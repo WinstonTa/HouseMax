@@ -1,0 +1,74 @@
+[
+  {
+    "id": "SA_STD_STUDIO",
+    "city_id": "city_santa_ana",
+    "name": "Santa Ana Standard Plan A — Studio (illustrative dimensions)",
+    "bedrooms": 0,
+    "sqft": 450,
+    "height_feet": 14,
+    "footprint_width_ft": 18,
+    "footprint_depth_ft": 25,
+    "min_lot_area_sqft": 4000,
+    "max_slope_pct": 10
+  },
+  {
+    "id": "SA_STD_1BR",
+    "city_id": "city_santa_ana",
+    "name": "Santa Ana Standard Plan B — 1 Bed (illustrative dimensions)",
+    "bedrooms": 1,
+    "sqft": 600,
+    "height_feet": 15,
+    "footprint_width_ft": 20,
+    "footprint_depth_ft": 30,
+    "min_lot_area_sqft": 5000,
+    "max_slope_pct": 10
+  },
+  {
+    "id": "SA_STD_2BR",
+    "city_id": "city_santa_ana",
+    "name": "Santa Ana Standard Plan C — 2 Bed (illustrative dimensions)",
+    "bedrooms": 2,
+    "sqft": 800,
+    "height_feet": 16,
+    "footprint_width_ft": 24,
+    "footprint_depth_ft": 34,
+    "min_lot_area_sqft": 6000,
+    "max_slope_pct": 8
+  },
+  {
+    "id": "SA_STD_3BR",
+    "city_id": "city_santa_ana",
+    "name": "Santa Ana Standard Plan D — 3 Bed (illustrative dimensions)",
+    "bedrooms": 3,
+    "sqft": 1150,
+    "height_feet": 16,
+    "footprint_width_ft": 30,
+    "footprint_depth_ft": 40,
+    "min_lot_area_sqft": 7500,
+    "max_slope_pct": 6
+  },
+  {
+    "id": "AN_STD_1BR",
+    "city_id": "city_anaheim",
+    "name": "Anaheim Pre-Approved ADU — 1 Bed (illustrative dimensions)",
+    "bedrooms": 1,
+    "sqft": 640,
+    "height_feet": 15,
+    "footprint_width_ft": 20,
+    "footprint_depth_ft": 32,
+    "min_lot_area_sqft": 5000,
+    "max_slope_pct": 10
+  },
+  {
+    "id": "AN_STD_2BR",
+    "city_id": "city_anaheim",
+    "name": "Anaheim Pre-Approved ADU — 2 Bed (illustrative dimensions)",
+    "bedrooms": 2,
+    "sqft": 860,
+    "height_feet": 16,
+    "footprint_width_ft": 26,
+    "footprint_depth_ft": 33,
+    "min_lot_area_sqft": 6000,
+    "max_slope_pct": 8
+  }
+]

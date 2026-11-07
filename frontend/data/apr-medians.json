@@ -1,0 +1,248 @@
+{
+  "generated_at": "2026-11-07",
+  "source": {
+    "title": "HCD Housing Element Annual Progress Report (APR), Table A2",
+    "dataset_url": "https://data.ca.gov/dataset/housing-element-annual-progress-report-apr-data-by-jurisdiction-and-year",
+    "resource_id": "fe505d9b-8c36-42ba-ba30-08bc4f34e022",
+    "status": "VERIFIED"
+  },
+  "method": "Rows joined across report years by the city's tracking id; earliest date per stage kept. Lags outside 0–3,650 days dropped as data-entry errors. Medians, 25th and 75th percentiles in calendar days.",
+  "limitations": [
+    "Table A2 has no application-submitted date, so these are NOT application-to-approval times.",
+    "Ministerial projects (most ADUs) often have no entitlement date, so entitlement-to-permit samples are small or empty for ADUs.",
+    "Permit-to-certificate-of-occupancy includes construction time, not just city review.",
+    "Self-reported by each city to HCD; reporting quality varies by city and year."
+  ],
+  "categories": {
+    "adu": "UNIT_CAT = ADU",
+    "multifamily": "UNIT_CAT = 5+"
+  },
+  "cities": {
+    "city_santa_ana": {
+      "juris_name": "SANTA ANA",
+      "adu": {
+        "skipped": false,
+        "total_rows": 1625,
+        "projects": 1140,
+        "report_years": "2018–2025",
+        "entitlement_to_permit_days": {
+          "n": 68,
+          "median": 24,
+          "p25": 11,
+          "p75": 41
+        },
+        "permit_to_co_days": {
+          "n": 682,
+          "median": 287,
+          "p25": 189,
+          "p75": 418
+        }
+      },
+      "multifamily": {
+        "skipped": false,
+        "total_rows": 90,
+        "projects": 74,
+        "report_years": "2018–2025",
+        "entitlement_to_permit_days": {
+          "n": 6,
+          "median": 666,
+          "p25": 253,
+          "p75": 708
+        },
+        "permit_to_co_days": {
+          "n": 15,
+          "median": 784,
+          "p25": 757,
+          "p75": 856
+        }
+      }
+    },
+    "city_anaheim": {
+      "juris_name": "ANAHEIM",
+      "adu": {
+        "skipped": false,
+        "total_rows": 1871,
+        "projects": 1280,
+        "report_years": "2018–2025",
+        "entitlement_to_permit_days": {
+          "n": 1265,
+          "median": 0,
+          "p25": 0,
+          "p75": 0
+        },
+        "permit_to_co_days": {
+          "n": 806,
+          "median": 278,
+          "p25": 190,
+          "p75": 405
+        }
+      },
+      "multifamily": {
+        "skipped": false,
+        "total_rows": 53,
+        "projects": 48,
+        "report_years": "2018–2025",
+        "entitlement_to_permit_days": {
+          "n": 33,
+          "median": 630,
+          "p25": 392,
+          "p75": 990
+        },
+        "permit_to_co_days": {
+          "n": 17,
+          "median": 764,
+          "p25": 332,
+          "p75": 948
+        }
+      }
+    },
+    "city_irvine": {
+      "juris_name": "IRVINE",
+      "adu": {
+        "skipped": false,
+        "total_rows": 42,
+        "projects": 36,
+        "report_years": "2018–2025",
+        "entitlement_to_permit_days": {
+          "n": 0,
+          "median": null,
+          "p25": null,
+          "p75": null
+        },
+        "permit_to_co_days": {
+          "n": 6,
+          "median": 483,
+          "p25": 375,
+          "p75": 504
+        }
+      },
+      "multifamily": {
+        "skipped": false,
+        "total_rows": 562,
+        "projects": 432,
+        "report_years": "2018–2025",
+        "entitlement_to_permit_days": {
+          "n": 0,
+          "median": null,
+          "p25": null,
+          "p75": null
+        },
+        "permit_to_co_days": {
+          "n": 169,
+          "median": 273,
+          "p25": 224,
+          "p75": 399
+        }
+      }
+    },
+    "city_long_beach": {
+      "juris_name": "LONG BEACH",
+      "adu": {
+        "skipped": false,
+        "total_rows": 5770,
+        "projects": 3662,
+        "report_years": "2018–2025",
+        "entitlement_to_permit_days": {
+          "n": 0,
+          "median": null,
+          "p25": null,
+          "p75": null
+        },
+        "permit_to_co_days": {
+          "n": 2190,
+          "median": 285,
+          "p25": 183,
+          "p75": 439
+        }
+      },
+      "multifamily": {
+        "skipped": false,
+        "total_rows": 186,
+        "projects": 155,
+        "report_years": "2018–2025",
+        "entitlement_to_permit_days": {
+          "n": 1,
+          "median": 339,
+          "p25": 339,
+          "p75": 339
+        },
+        "permit_to_co_days": {
+          "n": 28,
+          "median": 891,
+          "p25": 619,
+          "p75": 1000
+        }
+      }
+    },
+    "city_compton": {
+      "juris_name": "COMPTON",
+      "adu": {
+        "skipped": false,
+        "total_rows": 180,
+        "projects": 180,
+        "report_years": "2019–2023",
+        "entitlement_to_permit_days": {
+          "n": 130,
+          "median": 0,
+          "p25": 0,
+          "p75": 0
+        },
+        "permit_to_co_days": {
+          "n": 1,
+          "median": 0,
+          "p25": 0,
+          "p75": 0
+        }
+      },
+      "multifamily": {
+        "skipped": false,
+        "total_rows": 0,
+        "projects": 0,
+        "report_years": null,
+        "entitlement_to_permit_days": {
+          "n": 0,
+          "median": null,
+          "p25": null,
+          "p75": null
+        },
+        "permit_to_co_days": {
+          "n": 0,
+          "median": null,
+          "p25": null,
+          "p75": null
+        }
+      }
+    },
+    "city_los_angeles": {
+      "juris_name": "LOS ANGELES",
+      "adu": null,
+      "multifamily": {
+        "skipped": false,
+        "total_rows": 4898,
+        "projects": 4265,
+        "report_years": "2018–2025",
+        "entitlement_to_permit_days": {
+          "n": 134,
+          "median": 127,
+          "p25": 61,
+          "p75": 192
+        },
+        "permit_to_co_days": {
+          "n": 1054,
+          "median": 1069,
+          "p25": 842,
+          "p75": 1341
+        }
+      }
+    }
+  },
+  "not_fetched": [
+    {
+      "city_id": "city_los_angeles",
+      "category": "adu",
+      "rows": 66931,
+      "reason": "Over 12000 rows; skipped under the no-volume-scraping rule."
+    }
+  ],
+  "requests_made": 23
+}
