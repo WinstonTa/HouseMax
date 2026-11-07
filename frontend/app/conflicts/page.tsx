@@ -7,11 +7,12 @@ import { useProject } from "@/lib/store";
 import { getChecklist, getCity } from "@/lib/data";
 import type { ConflictType, DiscretionTrigger } from "@/lib/types";
 import { RadarSweep } from "@/components/charts/Charts";
+import { AutoScanPanel, PasteChecklistAudit, useConflictAudit } from "@/components/ConflictScan";
 import { AnimatedNumber, Badge, Card, CardHeader, Page, PageTitle, Segmented, cn, fadeUp, stagger } from "@/components/ui/primitives";
 
 const TYPE_META: Record<ConflictType, { label: string; tone: "critical" | "warning" | "good"; icon: typeof ShieldAlert; desc: string }> = {
-  SUBSTANTIVE_CONFLICT: { label: "Substantive conflict", tone: "critical", icon: ShieldAlert, desc: "Local rule imposes a condition barred by state law — preempted." },
-  STALE_CITATION: { label: "Stale citation", tone: "warning", icon: FileWarning, desc: "Renumbered code with identical legal effect — harmless, update citation." },
+  SUBSTANTIVE_CONFLICT: { label: "Substantive conflict", tone: "critical", icon: ShieldAlert, desc: "Curated: local rule may impose a condition state law bars. Needs legal review." },
+  STALE_CITATION: { label: "Stale citation", tone: "warning", icon: FileWarning, desc: "Renumbered code with the same legal effect. Update the citation." },
   NONE: { label: "Compliant", tone: "good", icon: ShieldCheck, desc: "Matches state law." },
 };
 
@@ -33,6 +34,8 @@ export default function ConflictsPage() {
   const items = checklist?.items ?? [];
   const [filter, setFilter] = useState<Filter>("ALL");
   const [selected, setSelected] = useState<string | null>(null);
+  const audit = useConflictAudit(city.id, project.type);
+  const auditById = new Map((audit?.data?.items ?? []).map((a) => [a.item_id, a]));
 
   const visible = items.filter((i) => filter === "ALL" || i.conflict_type === filter);
   const active = items.find((i) => i.item_id === selected) ?? items.find((i) => i.conflict_type === "SUBSTANTIVE_CONFLICT") ?? items[0] ?? null;
@@ -170,6 +173,8 @@ export default function ConflictsPage() {
                       <p className="text-[13.5px] leading-relaxed text-ink">{active.statutory_note}</p>
                     </div>
 
+                    <AutoScanPanel item={auditById.get(active.item_id)} />
+
                     {active.precedent && (
                       <a
                         href="https://www.hcd.ca.gov/"
@@ -222,11 +227,12 @@ export default function ConflictsPage() {
 
       {/* Discretion Detector */}
       <Card className="mt-5">
-        <CardHeader title="Discretion Detector" subtitle="Subjective procedural traps that illegally turn a ministerial project discretionary." icon={ScanSearch} />
+        <CardHeader title="Discretion Detector" subtitle="Language that can turn a ministerial project discretionary. Found by the backend scan; leads for human review, not legal conclusions." icon={ScanSearch} />
         <motion.div variants={stagger} initial="hidden" animate="show" className="grid grid-cols-1 gap-3 p-5 sm:grid-cols-2 lg:grid-cols-3">
           {TRIGGERS.map((t) => {
-            const hit = items.find((i) => i.discretion_trigger === t.key);
-            const lawful = hit?.conflict_type === "NONE";
+            const hitAudit = audit?.data?.items.find((a) => a.discretion_flags.some((f) => f.trigger === t.key));
+            const hit = hitAudit ? items.find((i) => i.item_id === hitAudit.item_id) : undefined;
+            const lawful = !hit;
             return (
               <motion.div
                 key={t.key}
@@ -236,13 +242,13 @@ export default function ConflictsPage() {
                 <div className="flex items-center justify-between gap-2">
                   <p className="text-[13.5px] font-semibold text-ink">{t.label}</p>
                   {hit && !lawful ? (
-                    <Badge tone="critical" icon={ShieldAlert}>Detected</Badge>
+                    <Badge tone="critical" icon={ShieldAlert}>Flagged</Badge>
                   ) : (
                     <Badge tone="good" icon={CheckCircle2}>Clear</Badge>
                   )}
                 </div>
                 <p className="mt-1.5 text-xs leading-relaxed text-ink-2">
-                  {hit && !lawful ? `${hit.item_id}: ${hit.requirement_text}` : "Not found in this checklist."}
+                  {hit && !lawful ? `${hit.item_id}: ${hit.requirement_text}` : audit ? "Not found in this checklist." : "Scanning…"}
                 </p>
               </motion.div>
             );
@@ -259,6 +265,8 @@ export default function ConflictsPage() {
           </div>
         )}
       </Card>
+
+      <PasteChecklistAudit projectType={project.type} />
     </Page>
   );
 }
