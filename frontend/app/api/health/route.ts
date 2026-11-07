@@ -6,6 +6,13 @@ export function GET() {
   return NextResponse.json({
     ok: true,
     engine_version: ENGINE_VERSION,
-    routes: { "POST /api/evaluate": "live" },
+    routes: {
+      "POST /api/evaluate": "live",
+      "GET /api/cities": "live",
+      "GET /api/cities/:id": "live",
+      "GET /api/regulations": "live",
+      "GET /api/projects": "live",
+      "GET /api/plans?cityId=": "live",
+    },
   });
 }
