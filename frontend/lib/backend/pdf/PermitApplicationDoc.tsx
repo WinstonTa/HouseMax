@@ -138,7 +138,7 @@ export function PermitApplicationDoc({ m }: { m: PacketModel }) {
           </View>
         ) : (
           <View style={s.box}>
-            <Text style={{ fontFamily: "Helvetica-Bold" }}>Applicant's statement not included</Text>
+            <Text style={{ fontFamily: "Helvetica-Bold" }}>{"Applicant's statement not included"}</Text>
             <Text style={[s.para, { marginTop: 4 }]}>{t(m.addendum.omitted_reason)}</Text>
           </View>
         )}
