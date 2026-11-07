@@ -1,0 +1,431 @@
+[
+  {
+    "id": "city_santa_ana",
+    "name": "Santa Ana",
+    "county": "Orange County",
+    "planning_department_url": "https://www.santa-ana.org/planning-and-building/",
+    "hcd_housing_element_status": "Compliant",
+    "apr_median_days_adu": 58,
+    "apr_median_days_multifamily": 240,
+    "active_hcd_letters": [
+      {
+        "issue_date": "2024-04-12",
+        "topic": "ADU Processing Standards and Objective Design Conformance",
+        "reference_url": "https://www.hcd.ca.gov/sites/default/files/docs/planning-and-local-assistance/santa-ana-adu-memo.pdf"
+      }
+    ],
+    "checklists": {
+      "adu": {
+        "checklist_id": "SA_CHK_ADU_2025",
+        "last_verified": "2026-09-15",
+        "verified_by": "J. Doe, Certified Permit Tech #4412",
+        "source_document_url": "https://www.santa-ana.org/documents/adu-application-packet/",
+        "required_documents": [
+          "Site plan with setbacks dimensioned",
+          "Floor plan & roof plan",
+          "Exterior elevations (all sides)",
+          "Title 24 energy compliance report",
+          "Grant deed / proof of ownership",
+          "Utility will-serve letter",
+          "Structural calculations"
+        ],
+        "items": [
+          {
+            "item_id": "CHK_01",
+            "requirement_text": "Maximum height of detached ADU limited to 16 feet.",
+            "governing_state_statute": "CA Gov. Code § 66321(b)",
+            "legacy_citation": "CA Gov. Code § 65852.2(c)(2)(D)",
+            "conflict_type": "NONE",
+            "statutory_note": "Compliant with state baseline height standards. Note: state law raises the cap to 18 ft within ½ mile of major transit.",
+            "category": "Dimensional",
+            "discretion_trigger": null
+          },
+          {
+            "item_id": "CHK_02",
+            "requirement_text": "Applicant must provide written approval from neighborhood HOA before building division intake.",
+            "governing_state_statute": "CA Civil Code § 4751 & Gov. Code § 66314",
+            "legacy_citation": "CA Civil Code § 4751",
+            "conflict_type": "SUBSTANTIVE_CONFLICT",
+            "statutory_note": "STATE VIOLATION: Municipalities cannot mandate private HOA consent as a prerequisite to municipal permit acceptance.",
+            "category": "Procedure",
+            "discretion_trigger": "HOA_SIGNOFF",
+            "precedent": "HCD Notice of Violation — City of Dana Point (HOA pre-clearance requirement)"
+          },
+          {
+            "item_id": "CHK_03",
+            "requirement_text": "Side and rear setbacks per Gov. Code § 65852.2: minimum 4 feet.",
+            "governing_state_statute": "CA Gov. Code § 66314(d)(7)",
+            "legacy_citation": "CA Gov. Code § 65852.2(a)(1)(D)(vii)",
+            "conflict_type": "STALE_CITATION",
+            "statutory_note": "Renumbered code. Same 4-ft standard now lives in § 66314 — identical legal effect, update the citation only.",
+            "category": "Dimensional",
+            "discretion_trigger": null
+          },
+          {
+            "item_id": "CHK_04",
+            "requirement_text": "One off-street parking space required per ADU regardless of location.",
+            "governing_state_statute": "CA Gov. Code § 65863.2 (AB 2097) & § 66322",
+            "legacy_citation": "None",
+            "conflict_type": "SUBSTANTIVE_CONFLICT",
+            "statutory_note": "STATE VIOLATION: No parking minimum may be imposed within ½ mile of a major transit stop.",
+            "category": "Parking",
+            "discretion_trigger": null
+          },
+          {
+            "item_id": "CHK_05",
+            "requirement_text": "ADUs over 800 sq ft subject to architectural design review for neighborhood compatibility.",
+            "governing_state_statute": "CA Gov. Code § 66314(b)(1)",
+            "legacy_citation": "CA Gov. Code § 65852.2(a)(1)(B)",
+            "conflict_type": "SUBSTANTIVE_CONFLICT",
+            "statutory_note": "STATE VIOLATION: Only objective, quantifiable standards may apply. Subjective 'compatibility' review is barred.",
+            "category": "Design",
+            "discretion_trigger": "AESTHETIC_GUIDELINE"
+          },
+          {
+            "item_id": "CHK_06",
+            "requirement_text": "Owner-occupancy affidavit required for the primary residence or the ADU.",
+            "governing_state_statute": "CA Gov. Code § 66315",
+            "legacy_citation": "CA Gov. Code § 65852.2(a)(6)",
+            "conflict_type": "SUBSTANTIVE_CONFLICT",
+            "statutory_note": "STATE VIOLATION: Local agencies may not impose owner-occupancy requirements on ADUs.",
+            "category": "Occupancy",
+            "discretion_trigger": "OWNER_OCCUPANCY"
+          },
+          {
+            "item_id": "CHK_07",
+            "requirement_text": "Fire sprinklers required only if required for the primary residence.",
+            "governing_state_statute": "CA Gov. Code § 66314(d)(12)",
+            "legacy_citation": "CA Gov. Code § 65852.2(a)(1)(D)(xii)",
+            "conflict_type": "NONE",
+            "statutory_note": "Compliant with state law.",
+            "category": "Building",
+            "discretion_trigger": null
+          },
+          {
+            "item_id": "CHK_08",
+            "requirement_text": "Completeness determination issued within 30 days per Gov. Code § 65852.2.",
+            "governing_state_statute": "CA Gov. Code § 65943 & § 66317",
+            "legacy_citation": "CA Gov. Code § 65852.2(a)(3)",
+            "conflict_type": "STALE_CITATION",
+            "statutory_note": "Renumbered code. Shot-clock duties are unchanged; update citation to § 66317.",
+            "category": "Procedure",
+            "discretion_trigger": null
+          }
+        ]
+      },
+      "missing_middle": {
+        "checklist_id": "SA_CHK_MM_2025",
+        "last_verified": "2026-08-30",
+        "verified_by": "R. Alvarez, Land-Use Analyst #2290",
+        "source_document_url": "https://www.santa-ana.org/planning-and-building/",
+        "required_documents": [
+          "Tentative parcel / subdivision map",
+          "Site plan with objective standards table",
+          "Architectural plans & elevations",
+          "Affordability declaration (if applicable)",
+          "Tenant history / demolition attestation",
+          "Utility will-serve letters"
+        ],
+        "items": [
+          {
+            "item_id": "MM_01",
+            "requirement_text": "Projects of 5+ units require a Site Development Permit approved by the Zoning Administrator.",
+            "governing_state_statute": "CA Gov. Code § 65913.4 (SB 35/423) & § 65852.28 (SB 684)",
+            "legacy_citation": "None",
+            "conflict_type": "SUBSTANTIVE_CONFLICT",
+            "statutory_note": "Qualifying streamlined projects must be reviewed ministerially; a discretionary SDP cannot be layered on top.",
+            "category": "Procedure",
+            "discretion_trigger": "SITE_DEVELOPMENT_PERMIT"
+          },
+          {
+            "item_id": "MM_02",
+            "requirement_text": "Traffic impact study required for any project adding 4 or more dwellings.",
+            "governing_state_statute": "CA Gov. Code § 65913.4(a)(5)",
+            "legacy_citation": "None",
+            "conflict_type": "SUBSTANTIVE_CONFLICT",
+            "statutory_note": "Ad-hoc studies on streamlined parcels are non-objective and cannot gate ministerial approval.",
+            "category": "Procedure",
+            "discretion_trigger": "TRAFFIC_STUDY"
+          },
+          {
+            "item_id": "MM_03",
+            "requirement_text": "Maximum building height 35 feet in R-3 zone.",
+            "governing_state_statute": "Objective local standard",
+            "legacy_citation": "None",
+            "conflict_type": "NONE",
+            "statutory_note": "Objective, quantifiable standard — enforceable.",
+            "category": "Dimensional",
+            "discretion_trigger": null
+          },
+          {
+            "item_id": "MM_04",
+            "requirement_text": "Public hearing before Planning Commission for subdivisions under § 66474.",
+            "governing_state_statute": "CA Gov. Code § 65852.28 (SB 684)",
+            "legacy_citation": "CA Gov. Code § 66474",
+            "conflict_type": "STALE_CITATION",
+            "statutory_note": "SB 684 small-lot maps of 10 or fewer units are ministerial; update the procedural reference.",
+            "category": "Procedure",
+            "discretion_trigger": "PUBLIC_HEARING"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "city_anaheim",
+    "name": "Anaheim",
+    "county": "Orange County",
+    "planning_department_url": "https://www.anaheim.net/",
+    "hcd_housing_element_status": "Compliant",
+    "apr_median_days_adu": 64,
+    "apr_median_days_multifamily": 262,
+    "active_hcd_letters": [],
+    "checklists": {
+      "adu": {
+        "checklist_id": "AN_CHK_ADU_2025",
+        "last_verified": "2026-09-02",
+        "verified_by": "L. Chen, Certified Permit Tech #3891",
+        "source_document_url": "https://www.anaheim.net/",
+        "required_documents": [
+          "Site plan with setbacks dimensioned",
+          "Floor plan & roof plan",
+          "Exterior elevations",
+          "Title 24 energy compliance report",
+          "Proof of ownership"
+        ],
+        "items": [
+          {
+            "item_id": "AN_01",
+            "requirement_text": "Detached ADU height limit: 16 ft (18 ft near major transit).",
+            "governing_state_statute": "CA Gov. Code § 66321(b)",
+            "legacy_citation": "CA Gov. Code § 65852.2",
+            "conflict_type": "NONE",
+            "statutory_note": "Mirrors state standard.",
+            "category": "Dimensional",
+            "discretion_trigger": null
+          },
+          {
+            "item_id": "AN_02",
+            "requirement_text": "Setbacks per § 65852.2: 4 ft side and rear.",
+            "governing_state_statute": "CA Gov. Code § 66314(d)(7)",
+            "legacy_citation": "CA Gov. Code § 65852.2",
+            "conflict_type": "STALE_CITATION",
+            "statutory_note": "Renumbered code; identical effect.",
+            "category": "Dimensional",
+            "discretion_trigger": null
+          },
+          {
+            "item_id": "AN_03",
+            "requirement_text": "Roof materials and colors must match the primary dwelling to staff satisfaction.",
+            "governing_state_statute": "CA Gov. Code § 66314(b)(1)",
+            "legacy_citation": "CA Gov. Code § 65852.2(a)(1)(B)",
+            "conflict_type": "SUBSTANTIVE_CONFLICT",
+            "statutory_note": "'To staff satisfaction' is subjective. Only objective design standards are permitted.",
+            "category": "Design",
+            "discretion_trigger": "AESTHETIC_GUIDELINE"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "city_irvine",
+    "name": "Irvine",
+    "county": "Orange County",
+    "planning_department_url": "https://www.cityofirvine.org/",
+    "hcd_housing_element_status": "Compliant",
+    "apr_median_days_adu": 52,
+    "apr_median_days_multifamily": 214,
+    "active_hcd_letters": [],
+    "checklists": {
+      "adu": {
+        "checklist_id": "IR_CHK_ADU_2025",
+        "last_verified": "2026-10-11",
+        "verified_by": "S. Patel, Certified Permit Tech #5120",
+        "source_document_url": "https://www.cityofirvine.org/",
+        "required_documents": [
+          "Site plan",
+          "Floor plan & elevations",
+          "Title 24 report",
+          "Proof of ownership"
+        ],
+        "items": [
+          {
+            "item_id": "IR_01",
+            "requirement_text": "HOA architectural committee stamp required on plans prior to submittal.",
+            "governing_state_statute": "CA Civil Code § 4751 & Gov. Code § 66314",
+            "legacy_citation": "CA Civil Code § 4751",
+            "conflict_type": "SUBSTANTIVE_CONFLICT",
+            "statutory_note": "STATE VIOLATION: Cities cannot condition intake on private HOA approval.",
+            "category": "Procedure",
+            "discretion_trigger": "HOA_SIGNOFF",
+            "precedent": "HCD Notice of Violation — City of Dana Point (HOA pre-clearance requirement)"
+          },
+          {
+            "item_id": "IR_02",
+            "requirement_text": "Maximum detached ADU size 1,200 sq ft.",
+            "governing_state_statute": "CA Gov. Code § 66321",
+            "legacy_citation": "CA Gov. Code § 65852.2",
+            "conflict_type": "NONE",
+            "statutory_note": "Mirrors state maximum.",
+            "category": "Dimensional",
+            "discretion_trigger": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "city_long_beach",
+    "name": "Long Beach",
+    "county": "Los Angeles County",
+    "planning_department_url": "https://www.longbeach.gov/lbcd/",
+    "hcd_housing_element_status": "Compliant",
+    "apr_median_days_adu": 71,
+    "apr_median_days_multifamily": 288,
+    "active_hcd_letters": [],
+    "checklists": {
+      "adu": {
+        "checklist_id": "LB_CHK_ADU_2025",
+        "last_verified": "2026-07-28",
+        "verified_by": "D. Okafor, Certified Permit Tech #2777",
+        "source_document_url": "https://www.longbeach.gov/lbcd/",
+        "required_documents": [
+          "Site plan",
+          "Floor plan & elevations",
+          "Title 24 report",
+          "Coastal zone determination",
+          "Proof of ownership"
+        ],
+        "items": [
+          {
+            "item_id": "LB_01",
+            "requirement_text": "ADU height capped at 16 ft citywide.",
+            "governing_state_statute": "CA Gov. Code § 66321(b)",
+            "legacy_citation": "CA Gov. Code § 65852.2",
+            "conflict_type": "SUBSTANTIVE_CONFLICT",
+            "statutory_note": "Citywide 16-ft cap ignores the 18-ft state minimum near major transit.",
+            "category": "Dimensional",
+            "discretion_trigger": null
+          },
+          {
+            "item_id": "LB_02",
+            "requirement_text": "Coastal Development Permit required in the Coastal Zone.",
+            "governing_state_statute": "CA Pub. Res. Code § 30600",
+            "legacy_citation": "None",
+            "conflict_type": "NONE",
+            "statutory_note": "Coastal Act still applies; ADU law does not preempt it.",
+            "category": "Procedure",
+            "discretion_trigger": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "city_compton",
+    "name": "Compton",
+    "county": "Los Angeles County",
+    "planning_department_url": "https://www.comptoncity.org/",
+    "hcd_housing_element_status": "In Review",
+    "apr_median_days_adu": 88,
+    "apr_median_days_multifamily": 331,
+    "active_hcd_letters": [],
+    "checklists": {
+      "adu": {
+        "checklist_id": "CO_CHK_ADU_2024",
+        "last_verified": "2026-06-19",
+        "verified_by": "M. Ruiz, Certified Permit Tech #1904",
+        "source_document_url": "https://www.comptoncity.org/",
+        "required_documents": [
+          "Site plan",
+          "Floor plan & elevations",
+          "Proof of ownership"
+        ],
+        "items": [
+          {
+            "item_id": "CO_01",
+            "requirement_text": "Public notice and hearing for ADUs on lots under 5,000 sq ft.",
+            "governing_state_statute": "CA Gov. Code § 66317",
+            "legacy_citation": "CA Gov. Code § 65852.2(a)(3)",
+            "conflict_type": "SUBSTANTIVE_CONFLICT",
+            "statutory_note": "STATE VIOLATION: ADU applications must be approved ministerially without a hearing.",
+            "category": "Procedure",
+            "discretion_trigger": "PUBLIC_HEARING"
+          },
+          {
+            "item_id": "CO_02",
+            "requirement_text": "Setbacks per § 65852.2: 4 ft side and rear.",
+            "governing_state_statute": "CA Gov. Code § 66314(d)(7)",
+            "legacy_citation": "CA Gov. Code § 65852.2",
+            "conflict_type": "STALE_CITATION",
+            "statutory_note": "Renumbered code; identical effect.",
+            "category": "Dimensional",
+            "discretion_trigger": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "city_los_angeles",
+    "name": "Los Angeles",
+    "county": "Los Angeles County",
+    "planning_department_url": "https://planning.lacity.gov/",
+    "hcd_housing_element_status": "Compliant",
+    "apr_median_days_adu": 79,
+    "apr_median_days_multifamily": 309,
+    "active_hcd_letters": [],
+    "checklists": {
+      "adu": {
+        "checklist_id": "LA_CHK_ADU_2025",
+        "last_verified": "2026-10-03",
+        "verified_by": "A. Kim, LADBS Permit Tech #6031",
+        "source_document_url": "https://planning.lacity.gov/",
+        "required_documents": [
+          "Plot plan",
+          "Floor plan & elevations",
+          "Title 24 report",
+          "Proof of ownership",
+          "LAFD hydrant & access clearance"
+        ],
+        "items": [
+          {
+            "item_id": "LA_01",
+            "requirement_text": "Detached ADU height up to 18 ft within ½ mile of major transit.",
+            "governing_state_statute": "CA Gov. Code § 66321(b)",
+            "legacy_citation": "CA Gov. Code § 65852.2",
+            "conflict_type": "NONE",
+            "statutory_note": "Mirrors state standard.",
+            "category": "Dimensional",
+            "discretion_trigger": null
+          }
+        ]
+      },
+      "missing_middle": {
+        "checklist_id": "LA_CHK_MM_2025",
+        "last_verified": "2026-09-20",
+        "verified_by": "A. Kim, LADBS Permit Tech #6031",
+        "source_document_url": "https://planning.lacity.gov/",
+        "required_documents": [
+          "Tentative tract map",
+          "Architectural plans",
+          "Affordability covenant (if applicable)",
+          "Demolition / tenant attestation"
+        ],
+        "items": [
+          {
+            "item_id": "LA_MM_01",
+            "requirement_text": "Site Plan Review required for projects of 50+ units.",
+            "governing_state_statute": "LAMC § 16.05",
+            "legacy_citation": "None",
+            "conflict_type": "NONE",
+            "statutory_note": "Threshold not triggered by 4–12 unit projects.",
+            "category": "Procedure",
+            "discretion_trigger": null
+          }
+        ]
+      }
+    }
+  }
+]

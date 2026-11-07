@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Brand (UI chrome) */
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #dbe6fe;
+  --color-brand-500: #3b6cf6;
+  --color-brand-600: #2a56e0;
+  --color-brand-700: #2143b4;
+  --color-ink: #0b0b0b;
+  --color-ink-2: #52514e;
+  --color-muted: #898781;
+  --color-surface: #fcfcfb;
+  --color-plane: #f5f5f2;
+  --color-hairline: #e1e0d9;
+  --color-axis: #c3c2b7;
+
+  /* Data-viz categorical slots (validated reference palette, light) */
+  --color-s1: #2a78d6;
+  --color-s2: #eb6834;
+  --color-s3: #1baf7a;
+  --color-s4: #eda100;
+  --color-s5: #e87ba4;
+
+  /* Status (reserved — always paired with icon + label) */
+  --color-good: #0ca30c;
+  --color-good-ink: #006300;
+  --color-warning: #fab219;
+  --color-serious: #ec835a;
+  --color-critical: #d03b3b;
+}
+
+html,
+body {
+  background: var(--color-plane);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Range input styling */
+input[type="range"].slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--color-brand-500) 0%,
+    var(--color-brand-500) var(--fill, 50%),
+    var(--color-hairline) var(--fill, 50%),
+    var(--color-hairline) 100%
+  );
+  outline: none;
+  cursor: pointer;
+}
+input[type="range"].slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #fff;
+  border: 2px solid var(--color-brand-500);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s;
+}
+input[type="range"].slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+input[type="range"].slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #fff;
+  border: 2px solid var(--color-brand-500);
+}
+input[type="range"].slider:focus-visible {
+  box-shadow: 0 0 0 3px var(--color-brand-100);
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(11, 11, 11, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(11, 11, 11, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-area,
+  .print-area * {
+    visibility: visible;
+  }
+  .print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  .print-page {
+    break-after: page;
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}

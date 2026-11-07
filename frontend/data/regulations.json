@@ -1,0 +1,68 @@
+[
+  {
+    "id": "STATUTE_ADU_HEIGHT_TRANSIT",
+    "code": "CA_GOV_66321_B",
+    "modern_citation": "CA Gov. Code § 66321(b)",
+    "legacy_citation": "CA Gov. Code § 65852.2",
+    "effective_date": "2025-01-01",
+    "last_checked_date": "2026-10-01",
+    "title": "State Mandated ADU Height Allowance Near Transit",
+    "applies_to": ["ADU_DETACHED"],
+    "audit_text": "State law mandates that a local agency must allow an 18-foot height limit for a detached ADU on a lot within one-half mile of a major transit stop."
+  },
+  {
+    "id": "STATUTE_PARKING_AB2097",
+    "code": "CA_GOV_65863_2",
+    "modern_citation": "CA Gov. Code § 65863.2 (AB 2097)",
+    "legacy_citation": "None",
+    "effective_date": "2023-01-01",
+    "last_checked_date": "2026-10-01",
+    "title": "Prohibition of Minimum Parking Mandates",
+    "applies_to": ["ADU_DETACHED", "MISSING_MIDDLE"],
+    "audit_text": "Public agencies are barred from imposing minimum parking standards on residential or commercial developments within one-half mile of a major transit stop."
+  },
+  {
+    "id": "STATUTE_ADU_MINISTERIAL",
+    "code": "CA_GOV_66317",
+    "modern_citation": "CA Gov. Code § 66317",
+    "legacy_citation": "CA Gov. Code § 65852.2(a)(3)",
+    "effective_date": "2025-01-01",
+    "last_checked_date": "2026-10-01",
+    "title": "Ministerial ADU Approval Within 60 Days",
+    "applies_to": ["ADU_DETACHED"],
+    "audit_text": "A local agency shall approve or deny a complete ADU application ministerially, without discretionary review or a hearing, within 60 days."
+  },
+  {
+    "id": "STATUTE_ADU_SIZE_SETBACK",
+    "code": "CA_GOV_66314",
+    "modern_citation": "CA Gov. Code § 66314",
+    "legacy_citation": "CA Gov. Code § 65852.2(a)(1)",
+    "effective_date": "2025-01-01",
+    "last_checked_date": "2026-09-22",
+    "title": "Objective ADU Standards: Size, Setbacks, Design",
+    "applies_to": ["ADU_DETACHED"],
+    "audit_text": "Local standards must be objective. Side and rear setbacks may not exceed 4 feet; a detached ADU up to 1,200 sq ft must be allowed."
+  },
+  {
+    "id": "STATUTE_SB684",
+    "code": "CA_GOV_65852_28",
+    "modern_citation": "CA Gov. Code § 65852.28 (SB 684)",
+    "legacy_citation": "None",
+    "effective_date": "2024-07-01",
+    "last_checked_date": "2026-09-30",
+    "title": "Ministerial Small-Lot Subdivisions (10 Units or Fewer)",
+    "applies_to": ["MISSING_MIDDLE"],
+    "audit_text": "Qualifying projects of 10 or fewer units on multifamily-zoned lots of 5 acres or less must be approved ministerially, without a hearing."
+  },
+  {
+    "id": "STATUTE_SB423",
+    "code": "CA_GOV_65913_4",
+    "modern_citation": "CA Gov. Code § 65913.4 (SB 35 / SB 423)",
+    "legacy_citation": "None",
+    "effective_date": "2024-01-01",
+    "last_checked_date": "2026-09-30",
+    "title": "Streamlined Ministerial Approval for Affordable Projects",
+    "applies_to": ["MISSING_MIDDLE"],
+    "audit_text": "Projects that meet objective standards and affordability thresholds in jurisdictions behind on RHNA qualify for streamlined ministerial review. Excludes very-high fire hazard zones and coastal areas."
+  }
+]
