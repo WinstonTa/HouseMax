@@ -1,0 +1,72 @@
+[
+  {
+    "legacy": "Gov. Code § 65852.2",
+    "pattern": "65852\\.2(?![0-9])",
+    "current": "Gov. Code §§ 66310–66342 (ADU approvals: §§ 66314–66331)",
+    "explanation": "SB 477 (Stats. 2024, Ch. 7) moved California's ADU law out of § 65852.2 into a new Chapter 13, §§ 66310–66342. A citation to § 65852.2 is stale; the matching rule now lives in the new chapter.",
+    "status": "VERIFIED",
+    "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=GOV&sectionNum=66314",
+    "checked_date": "2026-11-07",
+    "note": "Leginfo shows Chapter 13 'added by Stats. 2024, Ch. 7, Sec. 20' (SB 477) on every section read. Subsection-level mapping is not attempted."
+  },
+  {
+    "legacy": "Gov. Code § 65852.22",
+    "pattern": "65852\\.22(?![0-9])",
+    "current": "Gov. Code § 66333 et seq. (JADU, Article 3)",
+    "explanation": "Junior ADU rules formerly in § 65852.22 now sit in Article 3 of the ADU chapter, starting at § 66333.",
+    "status": "UNVERIFIED",
+    "source_url": "https://www.hcd.ca.gov/sites/default/files/docs/policy-and-research/adu-handbook-update.pdf",
+    "checked_date": null,
+    "note": "Mapping from the lane source list (DATA-SOURCES.md: 'JADU is 66333'). § 66323(a)(1)(D) read on leginfo does refer to 'Article 3 (commencing with Section 66333)'."
+  },
+  {
+    "legacy": "Gov. Code § 65852.23",
+    "pattern": "65852\\.23(?![0-9])",
+    "current": "Renumbered into Gov. Code §§ 66310–66342 (exact section not mapped)",
+    "explanation": "An ADU-related section renumbered by SB 477. The exact new section has not been mapped by this tool.",
+    "status": "UNVERIFIED",
+    "source_url": "https://www.hcd.ca.gov/sites/default/files/docs/policy-and-research/adu-handbook-update.pdf",
+    "checked_date": null,
+    "note": "Lane source list names .23 among the old numbers still seen in city documents."
+  },
+  {
+    "legacy": "Gov. Code § 65852.26",
+    "pattern": "65852\\.26(?![0-9])",
+    "current": "Renumbered into Gov. Code §§ 66310–66342 (exact section not mapped)",
+    "explanation": "An ADU-related section renumbered by SB 477. The exact new section has not been mapped by this tool.",
+    "status": "UNVERIFIED",
+    "source_url": "https://www.hcd.ca.gov/sites/default/files/docs/policy-and-research/adu-handbook-update.pdf",
+    "checked_date": null,
+    "note": "Lane source list names .26 among the old numbers still seen in city documents."
+  },
+  {
+    "legacy": "Gov. Code § 66324",
+    "pattern": "66324(?![0-9.])",
+    "current": "Gov. Code § 66311.5",
+    "explanation": "Renumbered in 2025 (per HCD ADU Handbook, March 2026, p. 13).",
+    "status": "UNVERIFIED",
+    "source_url": "https://www.hcd.ca.gov/sites/default/files/docs/policy-and-research/adu-handbook-update.pdf",
+    "checked_date": null,
+    "note": "From the lane source list; the Handbook page was not opened by this team."
+  },
+  {
+    "legacy": "Gov. Code § 66327",
+    "pattern": "66327(?![0-9.])",
+    "current": "Gov. Code § 66313.5",
+    "explanation": "Renumbered in 2025 (per HCD ADU Handbook, March 2026, p. 13).",
+    "status": "UNVERIFIED",
+    "source_url": "https://www.hcd.ca.gov/sites/default/files/docs/policy-and-research/adu-handbook-update.pdf",
+    "checked_date": null,
+    "note": "From the lane source list; the Handbook page was not opened by this team."
+  },
+  {
+    "legacy": "Gov. Code § 66332",
+    "pattern": "66332(?![0-9.])",
+    "current": "Gov. Code § 66311.7",
+    "explanation": "Renumbered in 2025 (per HCD ADU Handbook, March 2026, p. 13).",
+    "status": "UNVERIFIED",
+    "source_url": "https://www.hcd.ca.gov/sites/default/files/docs/policy-and-research/adu-handbook-update.pdf",
+    "checked_date": null,
+    "note": "From the lane source list; the Handbook page was not opened by this team."
+  }
+]
