@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { CircleHelp, ShieldCheck, ShieldAlert } from "lucide-react";
 import { VERDICT_META } from "@/lib/by-right-engine";
+import { useProject } from "@/lib/store";
 import type { Confidence, Evaluation, Verdict } from "@/lib/types";
 import { cn } from "./ui/primitives";
 
@@ -81,7 +82,7 @@ export function VerdictHero({ evaluation }: { evaluation: Evaluation }) {
 
   const headline =
     verdict === "BY_RIGHT_LIKELY"
-      ? "The city should process this ministerially — no hearings, no CEQA."
+      ? "Likely eligible for ministerial review under the rules checked here: no hearing, no CEQA."
       : verdict === "DISCRETIONARY_LIKELY"
         ? `${fail} condition${fail === 1 ? "" : "s"} push this into discretionary review.`
         : `${evaluation.followUps.length} answer${evaluation.followUps.length === 1 ? "" : "s"} away from a verdict.`;
@@ -131,6 +132,7 @@ export function VerdictHero({ evaluation }: { evaluation: Evaluation }) {
               </motion.h2>
             </AnimatePresence>
             <p className="mt-1.5 max-w-md text-sm text-white/80">{headline}</p>
+            <EvaluationProvenance />
           </div>
         </div>
         <div className="flex flex-wrap items-center gap-x-6 gap-y-3 rounded-2xl bg-black/15 px-5 py-4 ring-1 ring-white/10">
@@ -145,6 +147,25 @@ export function VerdictHero({ evaluation }: { evaluation: Evaluation }) {
         </div>
       </div>
     </motion.div>
+  );
+}
+
+/** Shows whether the verdict came from the backend (POST /api/evaluate) and how many of its sources are verified. */
+function EvaluationProvenance() {
+  const { evaluationSource, evaluationMeta } = useProject();
+  const sources = evaluationMeta?.sources ?? [];
+  const unverified = sources.filter((s) => s.status !== "VERIFIED").length;
+  const origin =
+    evaluationSource === "server"
+      ? `Computed by backend · engine ${evaluationMeta?.engine_version ?? "?"}`
+      : evaluationSource === "local-fallback"
+        ? "Backend unreachable · computed in browser"
+        : "Computing…";
+  return (
+    <p className="mt-2 text-[11px] text-white/60" data-testid="evaluation-provenance">
+      {origin}
+      {sources.length > 0 && ` · ${unverified} of ${sources.length} cited statutes not yet verified`}
+    </p>
   );
 }
 
