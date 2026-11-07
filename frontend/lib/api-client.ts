@@ -4,6 +4,7 @@
  */
 import type { ApiError, EvaluateResponse } from "./backend/schemas";
 import type { ConflictAudit } from "./backend/conflict-radar";
+import type { PacketModel } from "./backend/packet";
 import type { ProjectInput, ProjectType } from "./types";
 
 export class ApiRequestError extends Error {
@@ -46,6 +47,24 @@ async function getJson<T>(path: string, signal?: AbortSignal): Promise<T> {
 export function fetchCityConflictRadar(cityId: string, projectType: ProjectType, signal?: AbortSignal): Promise<ConflictAudit> {
   const type = projectType === "ADU_DETACHED" ? "adu" : "missing_middle";
   return getJson<ConflictAudit>(`/api/cities/${encodeURIComponent(cityId)}/conflict-radar?type=${type}`, signal);
+}
+
+export function fetchPacket(project: ProjectInput, docsChecked: Record<string, boolean>): Promise<PacketModel> {
+  return postJson<PacketModel>("/api/packet", { project, docsChecked });
+}
+
+/** Renders the draft PDF on the server and returns it as a Blob. */
+export async function fetchPacketPdf(project: ProjectInput, docsChecked: Record<string, boolean>): Promise<Blob> {
+  const res = await fetch("/api/packet/pdf", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ project, docsChecked }),
+  });
+  if (!res.ok) {
+    const err = (await res.json().catch(() => null)) as ApiError | null;
+    throw new ApiRequestError(res.status, err);
+  }
+  return res.blob();
 }
 
 export function auditChecklistText(text: string, projectType: ProjectType, label?: string): Promise<ConflictAudit> {

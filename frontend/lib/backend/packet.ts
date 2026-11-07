@@ -109,7 +109,7 @@ export function buildPacket(p: ProjectInput, docsChecked: Record<string, boolean
     meta: {
       engine_version: ENGINE_VERSION,
       generated_on: prettyDate(asOfIso),
-      watermark: "DRAFT · PROTOTYPE · NOT FOR SUBMISSION",
+      watermark: "DRAFT · NOT FOR SUBMISSION",
       footer: "HouseMax prototype · Draft application packet for applicant review · Not legal advice · Nothing has been filed",
       disclaimer: DISCLAIMER,
     },

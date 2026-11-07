@@ -4,7 +4,9 @@ import { AnimatePresence, motion } from "motion/react";
 import { AlertTriangle, Check, FileCheck2, FileText, Loader2, Printer, Sparkles } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { useProject } from "@/lib/store";
-import { getChecklist, getCity, getRegulation } from "@/lib/data";
+import { getChecklist, getCity } from "@/lib/data";
+import { fetchPacket, fetchPacketPdf } from "@/lib/api-client";
+import type { PacketModel } from "@/lib/backend/packet";
 import { VERDICT_META } from "@/lib/by-right-engine";
 import { AS_OF_DATE } from "@/lib/benchmarks";
 import { prettyDate } from "@/lib/format";
@@ -47,11 +49,34 @@ export default function PackagePage() {
   const done = docs.filter((d) => docsChecked[d]).length;
   const complete = docs.length > 0 && done === docs.length;
   const [stage, setStage] = useState<"idle" | "building" | "ready">("idle");
+  const [packet, setPacket] = useState<PacketModel | null>(null);
+  const [pdfBusy, setPdfBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const isByRight = ev.verdict === "BY_RIGHT_LIKELY";
 
-  function generate() {
+  async function generate() {
     setStage("building");
-    setTimeout(() => setStage("ready"), 1100);
+    setError(null);
+    try {
+      setPacket(await fetchPacket(p, docsChecked));
+      setStage("ready");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Packet build failed");
+      setStage("idle");
+    }
+  }
+
+  async function openPdf() {
+    setPdfBusy(true);
+    setError(null);
+    try {
+      const blob = await fetchPacketPdf(p, docsChecked);
+      window.open(URL.createObjectURL(blob), "_blank", "noopener");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "PDF render failed");
+    } finally {
+      setPdfBusy(false);
+    }
   }
 
   return (
@@ -114,7 +139,7 @@ export default function PackagePage() {
             {!isByRight && (
               <p className="mt-2 flex items-start gap-1.5 text-xs text-ink-2">
                 <AlertTriangle className="mt-0.5 size-3.5 shrink-0 text-[#c58a00]" />
-                The preemption addendum is only valid for By-Right Likely projects. Output will be watermarked DRAFT.
+                The applicant&apos;s statement is only included for By-Right Likely projects. Every page is watermarked DRAFT.
               </p>
             )}
             <motion.button
@@ -125,8 +150,21 @@ export default function PackagePage() {
               className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-ink px-4 py-3 text-sm font-semibold text-white transition hover:bg-black/80 disabled:opacity-60"
             >
               {stage === "building" ? <Loader2 className="size-4 animate-spin" /> : <Sparkles className="size-4" />}
-              {stage === "building" ? "Assembling package…" : stage === "ready" ? "Regenerate package" : "Generate application PDF"}
+              {stage === "building" ? "Assembling package…" : stage === "ready" ? "Regenerate package" : "Generate draft packet"}
             </motion.button>
+            {stage === "ready" && (
+              <motion.button
+                type="button"
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                onClick={openPdf}
+                disabled={pdfBusy}
+                className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-700 disabled:opacity-60"
+              >
+                {pdfBusy ? <Loader2 className="size-4 animate-spin" /> : <FileText className="size-4" />} Open server-rendered PDF
+              </motion.button>
+            )}
+            {error && <p className="mt-2 text-xs text-critical">{error}</p>}
             {stage === "ready" && (
               <motion.button
                 type="button"
@@ -151,11 +189,10 @@ export default function PackagePage() {
               {!complete && <Badge tone="warning">{docs.length - done} documents still missing</Badge>}
             </div>
             <div className="print-area relative space-y-6 rounded-3xl bg-[#e9e8e3] p-4 [perspective:1200px] md:p-8">
-              {!isByRight && (
-                <div className="pointer-events-none absolute inset-0 z-10 grid place-items-center overflow-hidden">
-                  <p className="-rotate-30 text-[120px] font-black tracking-widest text-critical/10">DRAFT</p>
-                </div>
-              )}
+              {/* Always a draft: this prototype never produces a filing-ready document. */}
+              <div className="pointer-events-none absolute inset-0 z-10 grid place-items-center overflow-hidden">
+                <p className="-rotate-30 text-[120px] font-black tracking-widest text-critical/10">DRAFT</p>
+              </div>
 
               <Paper n={1} title="Master Housing Permit Submittal Cover Sheet">
                 <p className="text-[9px] uppercase tracking-wider text-muted">City of {city.name} · Planning & Building</p>
@@ -219,48 +256,48 @@ export default function PackagePage() {
                 </div>
               </Paper>
 
-              <Paper n={3} title="Statutory Preemption & By-Right Audit Addendum">
-                <div className="rounded border-2 border-ink p-4">
-                  <p className="text-center text-sm font-bold">MANDATORY STATUTORY COMPLIANCE ADDENDUM</p>
-                  <p className="mt-3">
-                    <b>TO:</b> Plan Check Engineering Staff & Community Development Reviewers
-                  </p>
-                  <p>
-                    <b>JURISDICTION:</b> City of {city.name} / {city.county} Municipalities
-                  </p>
-                  <p>
-                    <b>PROJECT:</b> {p.address.split(",")[0]} (APN: {p.apn})
-                  </p>
-                  <p className="mt-3 italic">
-                    Notice is hereby given that this submittal qualifies for mandatory ministerial (by-right) processing pursuant to California Government Code §§ 66310–66342
-                    and § 65863.2. Local ordinances conflicting with statutory maximums (including height caps up to 18 feet near major transit stops, zero parking minimums
-                    under AB 2097, and prohibitions on mandatory HOA pre-clearances) are preempted under established California housing law. Department staff are required to
-                    evaluate this application under objective ministerial standards without public hearings or discretionary delays.
-                  </p>
-                </div>
-                <p className="mb-1 mt-4 font-bold">Statutes cited</p>
-                {ev.appliedOverrides.length === 0 && <p className="text-muted">No state-law overrides applied to this design.</p>}
-                {ev.appliedOverrides.map((id) => {
-                  const r = getRegulation(id);
-                  return r ? (
-                    <div key={id} className="border-b border-hairline py-1.5">
-                      <p className="font-medium">
-                        {r.modern_citation} — {r.title}
-                      </p>
-                      <p className="text-[9px] text-muted">
-                        Effective {r.effective_date ?? "not recorded"} · {r.status === "VERIFIED" ? `Verified ${r.last_checked_date}` : "UNVERIFIED"}
-                      </p>
-                    </div>
-                  ) : null;
-                })}
-                <p className="mb-1 mt-4 font-bold">Preempted local requirements</p>
-                {(checklist?.items ?? [])
-                  .filter((i) => i.conflict_type === "SUBSTANTIVE_CONFLICT")
-                  .map((i) => (
-                    <p key={i.item_id} className="border-b border-hairline py-1">
-                      <span className="font-mono text-[9px]">{i.item_id}</span> — {i.requirement_text} <span className="text-muted">({i.governing_state_statute})</span>
+              <Paper n={3} title="Statutory Basis & Applicant's Statement">
+                {packet?.addendum.included ? (
+                  <div className="rounded border-2 border-ink p-4">
+                    <p className="text-center text-sm font-bold">{packet.addendum.heading}</p>
+                    <p className="mt-3">
+                      <b>TO:</b> {packet.addendum.to}
                     </p>
-                  ))}
+                    <p>
+                      <b>JURISDICTION:</b> {packet.addendum.jurisdiction}
+                    </p>
+                    <p>
+                      <b>PROJECT:</b> {packet.addendum.project}
+                    </p>
+                    {packet.addendum.body.map((para, i) => (
+                      <p key={i} className="mt-2">
+                        {para}
+                      </p>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="rounded border-2 border-ink p-4">
+                    <p className="font-bold">Applicant&apos;s statement not included</p>
+                    <p className="mt-1">{packet?.addendum.omitted_reason}</p>
+                  </div>
+                )}
+                <p className="mb-1 mt-4 font-bold">Rules relied on</p>
+                {(packet?.addendum.statutes ?? []).length === 0 && <p className="text-muted">None.</p>}
+                {(packet?.addendum.statutes ?? []).map((st) => (
+                  <div key={st.cite} className="border-b border-hairline py-1.5">
+                    <p className="font-medium">
+                      {st.cite} — {st.title}
+                    </p>
+                    <p className="text-[9px] text-muted">{st.status === "VERIFIED" ? `Read on leginfo ${st.checked}` : "UNVERIFIED"}</p>
+                  </div>
+                ))}
+                <p className="mb-1 mt-4 font-bold">Local requirements flagged for review</p>
+                <p className="mb-1 text-[9px] text-muted">{packet?.addendum.flagged_note}</p>
+                {(packet?.addendum.flagged_local_requirements ?? []).map((f) => (
+                  <p key={f.item_id} className="border-b border-hairline py-1">
+                    <span className="font-mono text-[9px]">{f.item_id}</span> — {f.text} <span className="text-muted">({f.statute} · {f.note})</span>
+                  </p>
+                ))}
               </Paper>
 
               <Paper n={4} title="Pre-Flight Submittal Completeness Attestation">
@@ -290,7 +327,7 @@ export default function PackagePage() {
               </Paper>
             </div>
             <div className="no-print mt-3">
-              <Disclaimer>Prototype preview renders in-browser; use Print → Save as PDF. Production spec targets @react-pdf/renderer (PermitApplicationDoc.tsx).</Disclaimer>
+              <Disclaimer>Preview of the draft packet. &quot;Open server-rendered PDF&quot; renders the same content with @react-pdf/renderer on the backend (POST /api/packet/pdf). Draft for applicant review; nothing is filed.</Disclaimer>
             </div>
           </motion.div>
         )}
