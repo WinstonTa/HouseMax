@@ -5,7 +5,8 @@ import { BarChart3, Check, Copy, Gavel, Lock, Scale, Timer } from "lucide-react"
 import { useState } from "react";
 import { useProject } from "@/lib/store";
 import { CITIES, getCity } from "@/lib/data";
-import { AS_OF_DATE, STATUTORY_CLOCKS } from "@/lib/benchmarks";
+import { AS_OF_DATE } from "@/lib/benchmarks";
+import { statutoryClocks } from "@/lib/clocks";
 import { addDays, clamp, daysBetween, prettyDate } from "@/lib/format";
 import { CityBars, ClockRing, StackedBar } from "@/components/charts/Charts";
 import { Badge, Card, CardHeader, Disclaimer, Page, PageTitle, cn } from "@/components/ui/primitives";
@@ -15,7 +16,10 @@ export default function ClocksPage() {
   const city = getCity(project.cityId);
   const isAdu = project.type === "ADU_DETACHED";
   const elapsed = clamp(daysBetween(submittedDate, AS_OF_DATE), 0, 999);
-  const decisionLimit = isAdu ? STATUTORY_CLOCKS.aduDecisionDays : 90;
+  const clocks = statutoryClocks(project.type, submittedDate);
+  // Multifamily decision period is not verified: 90 days is an ASSUMPTION placeholder.
+  const decisionIsAssumption = clocks.decisionDays === null;
+  const decisionLimit = clocks.decisionDays ?? 90;
   const historical = isAdu ? city.apr_median_days_adu : city.apr_median_days_multifamily;
   const overdue = elapsed > decisionLimit;
   const [showDraft, setShowDraft] = useState(false);
@@ -35,7 +39,7 @@ Application submitted: ${prettyDate(submittedDate)}
 Statutory deadline: ${prettyDate(addDays(submittedDate, decisionLimit))} (${decisionLimit} days)
 As of ${prettyDate(AS_OF_DATE)}: ${elapsed} days elapsed${overdue ? ` — ${elapsed - decisionLimit} days past deadline` : ""}
 
-Pursuant to ${isAdu ? "California Government Code § 66317" : "California Government Code § 65913.4(d)"}, a local agency must ${isAdu ? "approve or deny a complete ADU application within 60 days" : "complete streamlined ministerial review within the statutory period"}. ${isAdu ? "If the agency has not acted within that period, the application shall be deemed approved." : ""}
+Pursuant to ${isAdu ? "California Government Code § 66317(a)(3)" : "California Government Code § 65913.4 [decision period not verified; confirm before use]"}, a local agency must ${isAdu ? "approve or deny an ADU application within 60 days of receiving a complete application (deemed complete after 15 business days without a determination, § 66317(a)(2))" : "complete streamlined ministerial review within the statutory period"}. ${isAdu ? "If the agency has not acted within that period, the application shall be deemed approved." : ""}
 
 We respectfully request a written determination within 5 business days. A copy of this notice is being provided to the California Department of Housing and Community Development, Housing Accountability Unit.
 
@@ -78,14 +82,19 @@ ${project.applicant.email} · ${project.applicant.phone}
         <Card>
           <CardHeader title="Statutory shot clock" subtitle="Legally binding deadlines" icon={Scale} right={<Badge tone="brand">Law</Badge>} />
           <div className="grid grid-cols-2 gap-4 p-6">
-            <ClockRing elapsed={elapsed} limit={STATUTORY_CLOCKS.completenessDays} label="Completeness review" sublabel="Gov. Code § 65943" />
-            <ClockRing elapsed={elapsed} limit={decisionLimit} label={isAdu ? "ADU decision" : "Streamlined review"} sublabel={isAdu ? "Gov. Code § 66317" : "Gov. Code § 65913.4"} />
+            <ClockRing elapsed={elapsed} limit={clocks.completenessDays} label={clocks.completenessLabel} sublabel={clocks.completenessCitation} />
+            <ClockRing elapsed={elapsed} limit={decisionLimit} label={decisionIsAssumption ? "Streamlined review (90-day ASSUMPTION)" : clocks.decisionLabel} sublabel={clocks.decisionCitation} />
           </div>
+          <ul className="space-y-1 px-6 pb-5 text-[11px] text-muted">
+            {clocks.notes.map((n) => (
+              <li key={n}>· {n}</li>
+            ))}
+          </ul>
         </Card>
         <Card>
-          <CardHeader title="Historical reality clock" subtitle={`HCD APR median turnaround · ${city.name}`} icon={Timer} right={<Badge>Empirical</Badge>} />
+          <CardHeader title="Historical reality clock" subtitle={`Median turnaround · ${city.name} · ${city.apr_median_note}`} icon={Timer} right={<Badge tone="warning">ASSUMPTION</Badge>} />
           <div className="flex flex-col items-center gap-4 p-6 sm:flex-row sm:justify-around">
-            <ClockRing elapsed={historical} limit={decisionLimit} label="Typical city median" sublabel={`${isAdu ? "ADU" : "Multifamily"} · HCD APR`} />
+            <ClockRing elapsed={historical} limit={decisionLimit} label="Typical city median" sublabel={`${isAdu ? "ADU" : "Multifamily"} · placeholder, not APR data`} />
             <div className="max-w-[220px] text-center sm:text-left">
               <p className="text-[13px] text-ink-2">
                 {historical <= decisionLimit ? (
@@ -130,7 +139,7 @@ ${project.applicant.email} · ${project.applicant.phone}
               {[
                 { d: submittedDate, t: "Application submitted" },
                 { d: addDays(submittedDate, Math.min(applicant, elapsed)), t: "Applicant correction resubmitted" },
-                { d: addDays(submittedDate, STATUTORY_CLOCKS.completenessDays), t: "Completeness deadline" },
+                { d: clocks.completenessDeadline, t: "Completeness deadline" },
                 { d: addDays(submittedDate, decisionLimit), t: "Decision deadline" },
               ].map((e) => (
                 <li key={e.t} className="relative">
