@@ -13,6 +13,8 @@ export function GET() {
       "GET /api/regulations": "live",
       "GET /api/projects": "live",
       "GET /api/plans?cityId=": "live",
+      "GET /api/cities/:id/conflict-radar?type=": "live",
+      "POST /api/conflict-radar": "live",
     },
   });
 }
