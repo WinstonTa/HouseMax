@@ -5,13 +5,13 @@
     "type": "ADU_DETACHED",
     "cityId": "city_santa_ana",
     "applicant": {
-      "name": "Marcus Vance",
-      "firm": "Vance Community Builders",
-      "email": "marcus@vancebuilders.com",
-      "phone": "(714) 555-0199"
+      "name": "Sample Applicant (fictional)",
+      "firm": "Example Builders (fictional)",
+      "email": "applicant@example.com",
+      "phone": "(555) 555-0100"
     },
-    "address": "922 E 4th St, Santa Ana, CA 92701",
-    "apn": "398-182-05",
+    "address": "Illustrative parcel, Santa Ana, CA (not a real address)",
+    "apn": "000-000-00 (illustrative)",
     "lotArea": 6800,
     "lotWidth": 50,
     "lotDepth": 136,
@@ -28,7 +28,7 @@
     "parking": 0,
     "preapprovedPlanId": null,
     "affordablePct": 0,
-    "dataSource": "VERIFIED"
+    "dataSource": "SELF_REPORTED"
   },
   {
     "id": "demo_proj_santa_ana_mm",
@@ -36,13 +36,13 @@
     "type": "MISSING_MIDDLE",
     "cityId": "city_santa_ana",
     "applicant": {
-      "name": "Elena Ortiz",
-      "firm": "OC Community Housing Trust",
-      "email": "eortiz@ochousingtrust.org",
-      "phone": "(714) 555-0142"
+      "name": "Sample Applicant (fictional)",
+      "firm": "Example Builders (fictional)",
+      "email": "applicant@example.com",
+      "phone": "(555) 555-0100"
     },
-    "address": "1410 N Fairview St, Santa Ana, CA 92703",
-    "apn": "198-301-17",
+    "address": "Illustrative parcel, Santa Ana, CA (not a real address)",
+    "apn": "000-000-00 (illustrative)",
     "lotArea": 21000,
     "lotWidth": 100,
     "lotDepth": 210,
@@ -59,6 +59,6 @@
     "parking": 8,
     "preapprovedPlanId": null,
     "affordablePct": 0,
-    "dataSource": "UPLOADED"
+    "dataSource": "SELF_REPORTED"
   }
 ]

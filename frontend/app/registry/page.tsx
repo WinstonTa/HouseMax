@@ -108,13 +108,21 @@ export default function RegistryPage() {
                     {cl.items.length} clauses · <span className="font-semibold text-[#a32626]">{conflicts} conflicts</span> · {stale} stale
                   </p>
                   <div className="mt-4 border-t border-hairline pt-3 text-xs text-ink-2">
-                    <p>
-                      Verified by <span className="font-medium text-ink">{cl.verified_by}</span>
-                    </p>
-                    <p>on {prettyDate(cl.last_verified)}</p>
-                    <a href={cl.source_document_url} target="_blank" rel="noreferrer" className="mt-1.5 inline-flex items-center gap-1 font-semibold text-brand-600 hover:underline">
-                      Source document <ExternalLink className="size-3" />
-                    </a>
+                    {cl.status === "VERIFIED" && cl.verified_by && cl.last_verified ? (
+                      <>
+                        <p>
+                          Verified by <span className="font-medium text-ink">{cl.verified_by}</span>
+                        </p>
+                        <p>on {prettyDate(cl.last_verified)}</p>
+                      </>
+                    ) : (
+                      <p className="font-medium text-[#7a5200]">{cl.status_note}</p>
+                    )}
+                    {cl.source_document_url && (
+                      <a href={cl.source_document_url} target="_blank" rel="noreferrer" className="mt-1.5 inline-flex items-center gap-1 font-semibold text-brand-600 hover:underline">
+                        City page <ExternalLink className="size-3" />
+                      </a>
+                    )}
                   </div>
                 </Card>
               );

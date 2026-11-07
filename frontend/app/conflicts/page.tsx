@@ -73,6 +73,12 @@ export default function ConflictsPage() {
         }
       />
 
+      {checklist.status !== "VERIFIED" && (
+        <div role="note" className="rounded-xl bg-warning/15 px-4 py-3 text-[13px] font-medium text-[#7a5200] ring-1 ring-inset ring-warning/50">
+          ILLUSTRATIVE CHECKLIST · {checklist.status_note}
+        </div>
+      )}
+
       <motion.div variants={stagger} className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {(["SUBSTANTIVE_CONFLICT", "STALE_CITATION", "NONE"] as ConflictType[]).map((t) => {
           const m = TYPE_META[t];
@@ -132,7 +138,11 @@ export default function ConflictsPage() {
                       <span className="font-mono text-[11px] text-muted">{active.item_id}</span>
                     </div>
                     <p className="mt-3 text-lg font-semibold leading-snug text-ink">“{active.requirement_text}”</p>
-                    <p className="mt-1 text-xs text-ink-2">— {city.name} checklist, verified {checklist.last_verified} by {checklist.verified_by}</p>
+                    <p className="mt-1 text-xs text-ink-2">
+                      {checklist.status === "VERIFIED"
+                        ? `— ${city.name} checklist, verified ${checklist.last_verified} by ${checklist.verified_by}`
+                        : `— ILLUSTRATIVE example, not taken from ${city.name}'s actual checklist`}
+                    </p>
 
                     <div className="mt-5 grid grid-cols-1 items-center gap-3 sm:grid-cols-[1fr_auto_1fr]">
                       <div className="rounded-xl bg-plane p-3 ring-1 ring-hairline">

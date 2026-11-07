@@ -35,11 +35,17 @@ export interface ChecklistItem {
   precedent?: string;
 }
 
+/** VERIFIED = items transcribed from the city's own published document. ILLUSTRATIVE = written for the demo. */
+export type ChecklistStatus = "VERIFIED" | "ILLUSTRATIVE";
+
 export interface Checklist {
   checklist_id: string;
-  last_verified: string;
-  verified_by: string;
-  source_document_url: string;
+  status: ChecklistStatus;
+  status_note: string;
+  /** null = not verified by anyone. */
+  last_verified: string | null;
+  verified_by: string | null;
+  source_document_url: string | null;
   required_documents: string[];
   items: ChecklistItem[];
 }
@@ -49,9 +55,12 @@ export interface City {
   name: string;
   county: string;
   planning_department_url: string;
+  planning_department_url_status: "VERIFIED" | "UNVERIFIED";
   hcd_housing_element_status: string;
   apr_median_days_adu: number;
   apr_median_days_multifamily: number;
+  /** Where the APR medians come from. Currently ASSUMPTION placeholders. */
+  apr_median_note: string;
   active_hcd_letters: HcdLetter[];
   checklists: Partial<Record<"adu" | "missing_middle", Checklist>>;
 }

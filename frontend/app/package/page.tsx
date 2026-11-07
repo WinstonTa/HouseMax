@@ -281,7 +281,7 @@ export default function PackagePage() {
                   </div>
                   <div>
                     <div className="h-8 border-b border-ink" />
-                    <p className="mt-1 text-muted">Permit technician sign-off · {checklist?.verified_by ?? "—"}</p>
+                    <p className="mt-1 text-muted">Permit technician sign-off · {checklist?.verified_by ?? "Not verified (illustrative checklist)"}</p>
                   </div>
                 </div>
                 <p className="mt-6 text-[9px] text-muted">

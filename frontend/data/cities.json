@@ -3,23 +3,17 @@
     "id": "city_santa_ana",
     "name": "Santa Ana",
     "county": "Orange County",
-    "planning_department_url": "https://www.santa-ana.org/planning-and-building/",
-    "hcd_housing_element_status": "Compliant",
+    "planning_department_url": "https://santa-ana.gov/pre-approved-adu-plans/",
+    "hcd_housing_element_status": "Unknown (not checked)",
     "apr_median_days_adu": 58,
     "apr_median_days_multifamily": 240,
-    "active_hcd_letters": [
-      {
-        "issue_date": "2024-04-12",
-        "topic": "ADU Processing Standards and Objective Design Conformance",
-        "reference_url": "https://www.hcd.ca.gov/sites/default/files/docs/planning-and-local-assistance/santa-ana-adu-memo.pdf"
-      }
-    ],
+    "active_hcd_letters": [],
     "checklists": {
       "adu": {
         "checklist_id": "SA_CHK_ADU_2025",
-        "last_verified": "2026-09-15",
-        "verified_by": "J. Doe, Certified Permit Tech #4412",
-        "source_document_url": "https://www.santa-ana.org/documents/adu-application-packet/",
+        "last_verified": null,
+        "verified_by": null,
+        "source_document_url": "https://santa-ana.gov/pre-approved-adu-plans/",
         "required_documents": [
           "Site plan with setbacks dimensioned",
           "Floor plan & roof plan",
@@ -48,8 +42,7 @@
             "conflict_type": "SUBSTANTIVE_CONFLICT",
             "statutory_note": "STATE VIOLATION: Municipalities cannot mandate private HOA consent as a prerequisite to municipal permit acceptance.",
             "category": "Procedure",
-            "discretion_trigger": "HOA_SIGNOFF",
-            "precedent": "HCD Notice of Violation — City of Dana Point (HOA pre-clearance requirement)"
+            "discretion_trigger": "HOA_SIGNOFF"
           },
           {
             "item_id": "CHK_03",
@@ -111,13 +104,15 @@
             "category": "Procedure",
             "discretion_trigger": null
           }
-        ]
+        ],
+        "status": "ILLUSTRATIVE",
+        "status_note": "Illustrative example written for the demo. Not taken from Santa Ana's actual checklist; verify every item against the city's published documents."
       },
       "missing_middle": {
         "checklist_id": "SA_CHK_MM_2025",
-        "last_verified": "2026-08-30",
-        "verified_by": "R. Alvarez, Land-Use Analyst #2290",
-        "source_document_url": "https://www.santa-ana.org/planning-and-building/",
+        "last_verified": null,
+        "verified_by": null,
+        "source_document_url": "https://santa-ana.gov/pre-approved-adu-plans/",
         "required_documents": [
           "Tentative parcel / subdivision map",
           "Site plan with objective standards table",
@@ -167,25 +162,29 @@
             "category": "Procedure",
             "discretion_trigger": "PUBLIC_HEARING"
           }
-        ]
+        ],
+        "status": "ILLUSTRATIVE",
+        "status_note": "Illustrative example written for the demo. Not taken from Santa Ana's actual checklist; verify every item against the city's published documents."
       }
-    }
+    },
+    "planning_department_url_status": "VERIFIED",
+    "apr_median_note": "ASSUMPTION: illustrative placeholder carried over from the spec. Not computed from HCD APR data."
   },
   {
     "id": "city_anaheim",
     "name": "Anaheim",
     "county": "Orange County",
-    "planning_department_url": "https://www.anaheim.net/",
-    "hcd_housing_element_status": "Compliant",
+    "planning_department_url": "https://www.anaheim.net/6349/ADU-Anaheim",
+    "hcd_housing_element_status": "Unknown (not checked)",
     "apr_median_days_adu": 64,
     "apr_median_days_multifamily": 262,
     "active_hcd_letters": [],
     "checklists": {
       "adu": {
         "checklist_id": "AN_CHK_ADU_2025",
-        "last_verified": "2026-09-02",
-        "verified_by": "L. Chen, Certified Permit Tech #3891",
-        "source_document_url": "https://www.anaheim.net/",
+        "last_verified": null,
+        "verified_by": null,
+        "source_document_url": "https://www.anaheim.net/6349/ADU-Anaheim",
         "required_documents": [
           "Site plan with setbacks dimensioned",
           "Floor plan & roof plan",
@@ -224,25 +223,29 @@
             "category": "Design",
             "discretion_trigger": "AESTHETIC_GUIDELINE"
           }
-        ]
+        ],
+        "status": "ILLUSTRATIVE",
+        "status_note": "Illustrative example written for the demo. Not taken from Anaheim's actual checklist; verify every item against the city's published documents."
       }
-    }
+    },
+    "planning_department_url_status": "VERIFIED",
+    "apr_median_note": "ASSUMPTION: illustrative placeholder carried over from the spec. Not computed from HCD APR data."
   },
   {
     "id": "city_irvine",
     "name": "Irvine",
     "county": "Orange County",
-    "planning_department_url": "https://www.cityofirvine.org/",
-    "hcd_housing_element_status": "Compliant",
+    "planning_department_url": "https://cityofirvine.gov/building-permits-and-inspections/project-constructing-accessory-dwelling-unit-adu",
+    "hcd_housing_element_status": "Unknown (not checked)",
     "apr_median_days_adu": 52,
     "apr_median_days_multifamily": 214,
     "active_hcd_letters": [],
     "checklists": {
       "adu": {
         "checklist_id": "IR_CHK_ADU_2025",
-        "last_verified": "2026-10-11",
-        "verified_by": "S. Patel, Certified Permit Tech #5120",
-        "source_document_url": "https://www.cityofirvine.org/",
+        "last_verified": null,
+        "verified_by": null,
+        "source_document_url": "https://cityofirvine.gov/building-permits-and-inspections/project-constructing-accessory-dwelling-unit-adu",
         "required_documents": [
           "Site plan",
           "Floor plan & elevations",
@@ -258,8 +261,7 @@
             "conflict_type": "SUBSTANTIVE_CONFLICT",
             "statutory_note": "STATE VIOLATION: Cities cannot condition intake on private HOA approval.",
             "category": "Procedure",
-            "discretion_trigger": "HOA_SIGNOFF",
-            "precedent": "HCD Notice of Violation — City of Dana Point (HOA pre-clearance requirement)"
+            "discretion_trigger": "HOA_SIGNOFF"
           },
           {
             "item_id": "IR_02",
@@ -271,25 +273,29 @@
             "category": "Dimensional",
             "discretion_trigger": null
           }
-        ]
+        ],
+        "status": "ILLUSTRATIVE",
+        "status_note": "Illustrative example written for the demo. Not taken from Irvine's actual checklist; verify every item against the city's published documents."
       }
-    }
+    },
+    "planning_department_url_status": "VERIFIED",
+    "apr_median_note": "ASSUMPTION: illustrative placeholder carried over from the spec. Not computed from HCD APR data."
   },
   {
     "id": "city_long_beach",
     "name": "Long Beach",
     "county": "Los Angeles County",
     "planning_department_url": "https://www.longbeach.gov/lbcd/",
-    "hcd_housing_element_status": "Compliant",
+    "hcd_housing_element_status": "Unknown (not checked)",
     "apr_median_days_adu": 71,
     "apr_median_days_multifamily": 288,
     "active_hcd_letters": [],
     "checklists": {
       "adu": {
         "checklist_id": "LB_CHK_ADU_2025",
-        "last_verified": "2026-07-28",
-        "verified_by": "D. Okafor, Certified Permit Tech #2777",
-        "source_document_url": "https://www.longbeach.gov/lbcd/",
+        "last_verified": null,
+        "verified_by": null,
+        "source_document_url": null,
         "required_documents": [
           "Site plan",
           "Floor plan & elevations",
@@ -318,25 +324,29 @@
             "category": "Procedure",
             "discretion_trigger": null
           }
-        ]
+        ],
+        "status": "ILLUSTRATIVE",
+        "status_note": "Illustrative example written for the demo. Not taken from Long Beach's actual checklist; verify every item against the city's published documents."
       }
-    }
+    },
+    "planning_department_url_status": "UNVERIFIED",
+    "apr_median_note": "ASSUMPTION: illustrative placeholder carried over from the spec. Not computed from HCD APR data."
   },
   {
     "id": "city_compton",
     "name": "Compton",
     "county": "Los Angeles County",
     "planning_department_url": "https://www.comptoncity.org/",
-    "hcd_housing_element_status": "In Review",
+    "hcd_housing_element_status": "Unknown (not checked)",
     "apr_median_days_adu": 88,
     "apr_median_days_multifamily": 331,
     "active_hcd_letters": [],
     "checklists": {
       "adu": {
         "checklist_id": "CO_CHK_ADU_2024",
-        "last_verified": "2026-06-19",
-        "verified_by": "M. Ruiz, Certified Permit Tech #1904",
-        "source_document_url": "https://www.comptoncity.org/",
+        "last_verified": null,
+        "verified_by": null,
+        "source_document_url": null,
         "required_documents": [
           "Site plan",
           "Floor plan & elevations",
@@ -363,25 +373,29 @@
             "category": "Dimensional",
             "discretion_trigger": null
           }
-        ]
+        ],
+        "status": "ILLUSTRATIVE",
+        "status_note": "Illustrative example written for the demo. Not taken from Compton's actual checklist; verify every item against the city's published documents."
       }
-    }
+    },
+    "planning_department_url_status": "UNVERIFIED",
+    "apr_median_note": "ASSUMPTION: illustrative placeholder carried over from the spec. Not computed from HCD APR data."
   },
   {
     "id": "city_los_angeles",
     "name": "Los Angeles",
     "county": "Los Angeles County",
     "planning_department_url": "https://planning.lacity.gov/",
-    "hcd_housing_element_status": "Compliant",
+    "hcd_housing_element_status": "Unknown (not checked)",
     "apr_median_days_adu": 79,
     "apr_median_days_multifamily": 309,
     "active_hcd_letters": [],
     "checklists": {
       "adu": {
         "checklist_id": "LA_CHK_ADU_2025",
-        "last_verified": "2026-10-03",
-        "verified_by": "A. Kim, LADBS Permit Tech #6031",
-        "source_document_url": "https://planning.lacity.gov/",
+        "last_verified": null,
+        "verified_by": null,
+        "source_document_url": null,
         "required_documents": [
           "Plot plan",
           "Floor plan & elevations",
@@ -400,13 +414,15 @@
             "category": "Dimensional",
             "discretion_trigger": null
           }
-        ]
+        ],
+        "status": "ILLUSTRATIVE",
+        "status_note": "Illustrative example written for the demo. Not taken from Los Angeles's actual checklist; verify every item against the city's published documents."
       },
       "missing_middle": {
         "checklist_id": "LA_CHK_MM_2025",
-        "last_verified": "2026-09-20",
-        "verified_by": "A. Kim, LADBS Permit Tech #6031",
-        "source_document_url": "https://planning.lacity.gov/",
+        "last_verified": null,
+        "verified_by": null,
+        "source_document_url": null,
         "required_documents": [
           "Tentative tract map",
           "Architectural plans",
@@ -424,8 +440,12 @@
             "category": "Procedure",
             "discretion_trigger": null
           }
-        ]
+        ],
+        "status": "ILLUSTRATIVE",
+        "status_note": "Illustrative example written for the demo. Not taken from Los Angeles's actual checklist; verify every item against the city's published documents."
       }
-    }
+    },
+    "planning_department_url_status": "UNVERIFIED",
+    "apr_median_note": "ASSUMPTION: illustrative placeholder carried over from the spec. Not computed from HCD APR data."
   }
 ]
