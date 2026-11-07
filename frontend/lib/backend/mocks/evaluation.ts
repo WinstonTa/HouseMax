@@ -17,7 +17,7 @@ import {
   type EvaluationResult,
   type ProjectInput,
   type Verdict,
-} from "@/lib/schemas";
+} from "@/lib/backend/schemas";
 
 const ADU_STATUTE_URL =
   "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=GOV&sectionNum=66314";

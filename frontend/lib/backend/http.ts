@@ -1,7 +1,7 @@
 /** Small helpers shared by API route handlers. Keeps every route's error shape identical (ApiError). */
 import { NextResponse } from "next/server";
 import type { ZodError } from "zod";
-import type { ApiError } from "@/lib/schemas";
+import type { ApiError } from "@/lib/backend/schemas";
 
 export function badRequest(message: string, zodError?: ZodError) {
   const body: ApiError = {

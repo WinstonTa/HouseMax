@@ -8,9 +8,9 @@
  * without changing the request/response contract.
  */
 import { NextResponse } from "next/server";
-import { EvaluateRequest, EvaluationResult } from "@/lib/schemas";
-import { mockEvaluate } from "@/lib/mocks/evaluation";
-import { badRequest, internalError, readJson } from "@/lib/http";
+import { EvaluateRequest, EvaluationResult } from "@/lib/backend/schemas";
+import { mockEvaluate } from "@/lib/backend/mocks/evaluation";
+import { badRequest, internalError, readJson } from "@/lib/backend/http";
 
 export async function POST(req: Request) {
   const body = await readJson(req);

@@ -3,7 +3,7 @@
  *
  * This file is the single source of truth for every type that crosses the backend/frontend
  * boundary: the JSON data files under /data, the API request bodies and the API responses.
- * Frontend code should import types from here (`import type { EvaluationResult } from "@/lib/schemas"`)
+ * Frontend code should import types from here (`import type { EvaluationResult } from "@/lib/backend/schemas"`)
  * and never redeclare them.
  *
  * Pure Zod, no framework imports, safe to import from server or client code.

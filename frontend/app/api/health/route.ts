@@ -1,6 +1,6 @@
 /** GET /api/health: liveness + which parts of the backend are real vs mocked. */
 import { NextResponse } from "next/server";
-import { ENGINE_VERSION } from "@/lib/schemas";
+import { ENGINE_VERSION } from "@/lib/backend/schemas";
 
 export function GET() {
   return NextResponse.json({

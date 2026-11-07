@@ -1,4 +1,4 @@
-import type { ProjectInput } from "@/lib/schemas";
+import type { ProjectInput } from "@/lib/backend/schemas";
 
 /**
  * MOCK sample request body for POST /api/evaluate (P0 only).

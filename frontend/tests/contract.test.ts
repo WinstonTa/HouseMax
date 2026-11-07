@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { EvaluateRequest, EvaluationResult, type ProjectInput } from "@/lib/schemas";
-import { SAMPLE_PROJECT } from "@/lib/mocks/sample-project";
-import { mockEvaluate } from "@/lib/mocks/evaluation";
+import { EvaluateRequest, EvaluationResult, type ProjectInput } from "@/lib/backend/schemas";
+import { SAMPLE_PROJECT } from "@/lib/backend/mocks/sample-project";
+import { mockEvaluate } from "@/lib/backend/mocks/evaluation";
 import { POST } from "@/app/api/evaluate/route";
 
 const withTransit = (p: ProjectInput, value: boolean): ProjectInput => ({
