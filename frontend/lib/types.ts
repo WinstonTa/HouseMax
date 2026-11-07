@@ -57,10 +57,6 @@ export interface City {
   planning_department_url: string;
   planning_department_url_status: "VERIFIED" | "UNVERIFIED";
   hcd_housing_element_status: string;
-  apr_median_days_adu: number;
-  apr_median_days_multifamily: number;
-  /** Where the APR medians come from. Currently ASSUMPTION placeholders. */
-  apr_median_note: string;
   active_hcd_letters: HcdLetter[];
   checklists: Partial<Record<"adu" | "missing_middle", Checklist>>;
 }

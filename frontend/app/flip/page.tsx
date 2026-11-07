@@ -58,8 +58,10 @@ export default function FlipPage() {
   const scenario: ProjectInput = activeFlips.reduce<ProjectInput>((acc, f) => ({ ...acc, ...f.patch }), project);
   const after = evaluate(scenario);
 
-  const baseDays = project.type === "ADU_DETACHED" ? city.apr_median_days_adu : Math.round((APPROVAL_MEDIANS.ministerialLow + APPROVAL_MEDIANS.ministerialHigh) / 2);
-  const baseSource = project.type === "ADU_DETACHED" ? `HCD APR median · ${city.name}` : "Ministerial median · LA baseline";
+  // ADU baseline = the statutory decision window (60 days from a complete application, Gov. Code § 66317(a)(3)).
+  // No measured city approval time exists in the APR data (no application dates).
+  const baseDays = project.type === "ADU_DETACHED" ? 60 : Math.round((APPROVAL_MEDIANS.ministerialLow + APPROVAL_MEDIANS.ministerialHigh) / 2);
+  const baseSource = project.type === "ADU_DETACHED" ? `60-day ADU decision limit · § 66317(a)(3) · ${city.name}` : "Ministerial median · LA baseline (UNVERIFIED)";
 
   const isDisc = evaluation.verdict === "DISCRETIONARY_LIKELY";
   const currentPenalty = reviewDays(evaluation.triggeredReviews);

@@ -20,8 +20,8 @@ describe("data/cities.json honesty", () => {
     }
   });
 
-  it("APR medians are labeled as assumptions until computed from APR data", () => {
-    for (const c of CITIES) expect(c.apr_median_note, c.id).toMatch(/^ASSUMPTION|^APR/);
+  it("no invented APR medians remain in city records (real ones live in data/apr-medians.json)", () => {
+    for (const c of CITIES) expect(Object.keys(c).some((k) => k.startsWith("apr_")), c.id).toBe(false);
   });
 });
 

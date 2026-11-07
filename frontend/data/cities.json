@@ -5,8 +5,6 @@
     "county": "Orange County",
     "planning_department_url": "https://santa-ana.gov/pre-approved-adu-plans/",
     "hcd_housing_element_status": "Unknown (not checked)",
-    "apr_median_days_adu": 58,
-    "apr_median_days_multifamily": 240,
     "active_hcd_letters": [],
     "checklists": {
       "adu": {
@@ -167,8 +165,7 @@
         "status_note": "Illustrative example written for the demo. Not taken from Santa Ana's actual checklist; verify every item against the city's published documents."
       }
     },
-    "planning_department_url_status": "VERIFIED",
-    "apr_median_note": "ASSUMPTION: illustrative placeholder carried over from the spec. Not computed from HCD APR data."
+    "planning_department_url_status": "VERIFIED"
   },
   {
     "id": "city_anaheim",
@@ -176,8 +173,6 @@
     "county": "Orange County",
     "planning_department_url": "https://www.anaheim.net/6349/ADU-Anaheim",
     "hcd_housing_element_status": "Unknown (not checked)",
-    "apr_median_days_adu": 64,
-    "apr_median_days_multifamily": 262,
     "active_hcd_letters": [],
     "checklists": {
       "adu": {
@@ -228,8 +223,7 @@
         "status_note": "Illustrative example written for the demo. Not taken from Anaheim's actual checklist; verify every item against the city's published documents."
       }
     },
-    "planning_department_url_status": "VERIFIED",
-    "apr_median_note": "ASSUMPTION: illustrative placeholder carried over from the spec. Not computed from HCD APR data."
+    "planning_department_url_status": "VERIFIED"
   },
   {
     "id": "city_irvine",
@@ -237,8 +231,6 @@
     "county": "Orange County",
     "planning_department_url": "https://cityofirvine.gov/building-permits-and-inspections/project-constructing-accessory-dwelling-unit-adu",
     "hcd_housing_element_status": "Unknown (not checked)",
-    "apr_median_days_adu": 52,
-    "apr_median_days_multifamily": 214,
     "active_hcd_letters": [],
     "checklists": {
       "adu": {
@@ -278,8 +270,7 @@
         "status_note": "Illustrative example written for the demo. Not taken from Irvine's actual checklist; verify every item against the city's published documents."
       }
     },
-    "planning_department_url_status": "VERIFIED",
-    "apr_median_note": "ASSUMPTION: illustrative placeholder carried over from the spec. Not computed from HCD APR data."
+    "planning_department_url_status": "VERIFIED"
   },
   {
     "id": "city_long_beach",
@@ -287,8 +278,6 @@
     "county": "Los Angeles County",
     "planning_department_url": "https://www.longbeach.gov/lbcd/",
     "hcd_housing_element_status": "Unknown (not checked)",
-    "apr_median_days_adu": 71,
-    "apr_median_days_multifamily": 288,
     "active_hcd_letters": [],
     "checklists": {
       "adu": {
@@ -329,8 +318,7 @@
         "status_note": "Illustrative example written for the demo. Not taken from Long Beach's actual checklist; verify every item against the city's published documents."
       }
     },
-    "planning_department_url_status": "UNVERIFIED",
-    "apr_median_note": "ASSUMPTION: illustrative placeholder carried over from the spec. Not computed from HCD APR data."
+    "planning_department_url_status": "UNVERIFIED"
   },
   {
     "id": "city_compton",
@@ -338,8 +326,6 @@
     "county": "Los Angeles County",
     "planning_department_url": "https://www.comptoncity.org/",
     "hcd_housing_element_status": "Unknown (not checked)",
-    "apr_median_days_adu": 88,
-    "apr_median_days_multifamily": 331,
     "active_hcd_letters": [],
     "checklists": {
       "adu": {
@@ -378,8 +364,7 @@
         "status_note": "Illustrative example written for the demo. Not taken from Compton's actual checklist; verify every item against the city's published documents."
       }
     },
-    "planning_department_url_status": "UNVERIFIED",
-    "apr_median_note": "ASSUMPTION: illustrative placeholder carried over from the spec. Not computed from HCD APR data."
+    "planning_department_url_status": "UNVERIFIED"
   },
   {
     "id": "city_los_angeles",
@@ -387,8 +372,6 @@
     "county": "Los Angeles County",
     "planning_department_url": "https://planning.lacity.gov/",
     "hcd_housing_element_status": "Unknown (not checked)",
-    "apr_median_days_adu": 79,
-    "apr_median_days_multifamily": 309,
     "active_hcd_letters": [],
     "checklists": {
       "adu": {
@@ -445,7 +428,6 @@
         "status_note": "Illustrative example written for the demo. Not taken from Los Angeles's actual checklist; verify every item against the city's published documents."
       }
     },
-    "planning_department_url_status": "UNVERIFIED",
-    "apr_median_note": "ASSUMPTION: illustrative placeholder carried over from the spec. Not computed from HCD APR data."
+    "planning_department_url_status": "UNVERIFIED"
   }
 ]

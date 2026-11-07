@@ -7,6 +7,7 @@ import { useProject } from "@/lib/store";
 import { CITIES, getCity } from "@/lib/data";
 import { AS_OF_DATE } from "@/lib/benchmarks";
 import { statutoryClocks } from "@/lib/clocks";
+import { APR, MIN_SAMPLE, aprTiming } from "@/lib/apr";
 import { addDays, clamp, daysBetween, prettyDate } from "@/lib/format";
 import { CityBars, ClockRing, StackedBar } from "@/components/charts/Charts";
 import { Badge, Card, CardHeader, Disclaimer, Page, PageTitle, cn } from "@/components/ui/primitives";
@@ -20,7 +21,7 @@ export default function ClocksPage() {
   // Multifamily decision period is not verified: 90 days is an ASSUMPTION placeholder.
   const decisionIsAssumption = clocks.decisionDays === null;
   const decisionLimit = clocks.decisionDays ?? 90;
-  const historical = isAdu ? city.apr_median_days_adu : city.apr_median_days_multifamily;
+  const historical = aprTiming(city.id, project.type);
   const overdue = elapsed > decisionLimit;
   const [showDraft, setShowDraft] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -29,7 +30,9 @@ export default function ClocksPage() {
   const applicant = Math.min(9, elapsed - external);
   const cityLag = Math.max(0, elapsed - external - applicant);
 
-  const benchmark = CITIES.map((c) => ({ id: c.id, label: c.name, value: isAdu ? c.apr_median_days_adu : c.apr_median_days_multifamily }));
+  const timings = CITIES.map((c) => ({ c, t: aprTiming(c.id, project.type) }));
+  const benchmark = timings.filter(({ t }) => t.median !== null).map(({ c, t }) => ({ id: c.id, label: c.name, value: t.median as number }));
+  const unknownCities = timings.filter(({ t }) => t.median === null).map(({ c }) => c.name);
 
   const letter = `NOTICE OF EXCEEDED STATUTORY DEADLINE — DRAFT
 
@@ -92,41 +95,56 @@ ${project.applicant.email} · ${project.applicant.phone}
           </ul>
         </Card>
         <Card>
-          <CardHeader title="Historical reality clock" subtitle={`Median turnaround · ${city.name} · ${city.apr_median_note}`} icon={Timer} right={<Badge tone="warning">ASSUMPTION</Badge>} />
-          <div className="flex flex-col items-center gap-4 p-6 sm:flex-row sm:justify-around">
-            <ClockRing elapsed={historical} limit={decisionLimit} label="Typical city median" sublabel={`${isAdu ? "ADU" : "Multifamily"} · placeholder, not APR data`} />
-            <div className="max-w-[220px] text-center sm:text-left">
-              <p className="text-[13px] text-ink-2">
-                {historical <= decisionLimit ? (
-                  <>
-                    {city.name} typically decides <span className="font-semibold text-ink">{decisionLimit - historical} days inside</span> the statutory limit.
-                  </>
-                ) : (
-                  <>
-                    {city.name}&apos;s median runs <span className="font-semibold text-[#a32626]">{historical - decisionLimit} days past</span> the statutory limit.
-                  </>
-                )}
+          <CardHeader
+            title="Historical reality clock"
+            subtitle={`${city.name} · ${isAdu ? "ADUs" : "5+ unit buildings"} · building permit → certificate of occupancy`}
+            icon={Timer}
+            right={<Badge tone={historical.median === null ? "warning" : "brand"}>{historical.median === null ? "Unknown" : "HCD APR data"}</Badge>}
+          />
+          <div className="p-6" data-testid="historical-clock">
+            {historical.median === null ? (
+              <p className="text-[15px] font-semibold text-ink">Unknown</p>
+            ) : (
+              <p className="tabular text-3xl font-semibold text-ink">
+                {historical.median} days <span className="text-sm font-medium text-ink-2">median</span>
               </p>
-              <p className="mt-2 text-[13px] text-ink-2">
-                Your application is at <span className="font-semibold text-ink">day {elapsed}</span>.
+            )}
+            {historical.median !== null && (
+              <p className="mt-1 text-[13px] text-ink-2">
+                Middle half of projects: {historical.p25}–{historical.p75} days.
               </p>
-            </div>
+            )}
+            <p className="mt-2 text-[13px] text-ink-2">{historical.note}</p>
+            <p className="mt-2 text-[12px] text-muted">
+              This is permit-to-occupancy time and includes construction. The APR does not record application dates, so it cannot show how long {city.name} takes to approve an application. Your application is at day {elapsed}.
+            </p>
+            <a href={historical.sourceUrl} target="_blank" rel="noreferrer" className="mt-2 inline-block text-[12px] font-semibold text-brand-600 hover:underline">
+              {historical.sourceLabel}
+            </a>
           </div>
         </Card>
       </div>
 
       <div className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-5">
         <Card className="lg:col-span-3">
-          <CardHeader title="Median decision days by city" subtitle={isAdu ? "Black line = 60-day statutory limit" : "Multifamily medians (no single statutory limit)"} icon={BarChart3} />
+          <CardHeader title="Permit → occupancy, median days by city" subtitle={`${isAdu ? "ADUs" : "5+ unit buildings"} · cities with at least ${MIN_SAMPLE} projects`} icon={BarChart3} />
           <div className="py-5 pl-10 pr-5">
-            <CityBars data={benchmark} highlightId={city.id} reference={isAdu ? { value: 60, label: "60-day limit" } : undefined} />
+            {benchmark.length > 0 ? <CityBars data={benchmark} highlightId={city.id} /> : <p className="text-[13px] text-ink-2">No city has enough APR data for this project type.</p>}
           </div>
           <div className="px-5 pb-4">
-            <Disclaimer>Illustrative seed values modeled on HCD Annual Progress Reports; verify before citing.</Disclaimer>
+            <Disclaimer>
+              Source: HCD APR Table A2 on data.ca.gov, pulled {APR.generated_at}. Includes construction time; not a measure of city approval speed.
+              {unknownCities.length > 0 && ` Unknown (too little or unusable data): ${unknownCities.join(", ")}.`}
+            </Disclaimer>
           </div>
         </Card>
         <Card className="lg:col-span-2">
-          <CardHeader title="Who owns the delay?" subtitle={`${elapsed} days elapsed, segmented`} icon={Timer} />
+          <CardHeader
+            title="Who owns the delay?"
+            subtitle={`${elapsed} days elapsed · ILLUSTRATIVE split (fixed 6 external / 9 applicant days, rest city); no real attribution data yet`}
+            icon={Timer}
+            right={<Badge tone="warning">ASSUMPTION</Badge>}
+          />
           <div className="p-5">
             <StackedBar
               parts={[
