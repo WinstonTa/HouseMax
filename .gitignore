@@ -1,0 +1,28 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# never commit personal information
+real-data/
+private/
+
+# tooling
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+dist/
+build/
+.next/
+.DS_Store
+*.zip
+
+# event boilerplate: separate repo, read-only reference (github.com/travcjohnson/claude-impact-lab-uci)
+claude-impact-lab-uci/
+
+# test/coverage output
+coverage/
+*.tsbuildinfo
+next-env.d.ts
