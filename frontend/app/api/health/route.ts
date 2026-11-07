@@ -1,4 +1,4 @@
-/** GET /api/health: liveness + which parts of the backend are real vs mocked. */
+/** GET /api/health: liveness + which backend routes are live. */
 import { NextResponse } from "next/server";
 import { ENGINE_VERSION } from "@/lib/backend/schemas";
 
@@ -6,9 +6,6 @@ export function GET() {
   return NextResponse.json({
     ok: true,
     engine_version: ENGINE_VERSION,
-    routes: {
-      "POST /api/evaluate": "mock",
-      "GET /api/sample-project": "mock",
-    },
+    routes: { "POST /api/evaluate": "live" },
   });
 }

@@ -1,15 +1,12 @@
 /**
  * POST /api/evaluate
- * Body: EvaluateRequest  ({ project: ProjectInput })
- * 200:  EvaluationResult
+ * Body: { project: ProjectInput }   (lib/types.ts, validated by lib/backend/schemas.ts)
+ * 200:  EvaluateResponse { evaluation, flips, meta }
  * 400:  ApiError (BAD_REQUEST, with Zod issues)
- *
- * P0: returns the MOCK evaluator (is_mock: true). P1 swaps in lib/engine/by-right-engine.ts
- * without changing the request/response contract.
  */
 import { NextResponse } from "next/server";
-import { EvaluateRequest, EvaluationResult } from "@/lib/backend/schemas";
-import { mockEvaluate } from "@/lib/backend/mocks/evaluation";
+import { EvaluateRequest } from "@/lib/backend/schemas";
+import { runEvaluation } from "@/lib/backend/evaluate-service";
 import { badRequest, internalError, readJson } from "@/lib/backend/http";
 
 export async function POST(req: Request) {
@@ -19,11 +16,10 @@ export async function POST(req: Request) {
   const parsed = EvaluateRequest.safeParse(body);
   if (!parsed.success) return badRequest("Invalid project.", parsed.error);
 
-  const result = mockEvaluate(parsed.data.project);
-
-  // Guard the contract on the way out too, so a backend bug surfaces as a 500, not bad UI data.
-  const checked = EvaluationResult.safeParse(result);
-  if (!checked.success) return internalError("Engine produced an invalid result.");
-
-  return NextResponse.json(checked.data);
+  try {
+    return NextResponse.json(runEvaluation(parsed.data.project));
+  } catch (err) {
+    console.error("evaluate failed", err);
+    return internalError("Evaluation failed.");
+  }
 }
