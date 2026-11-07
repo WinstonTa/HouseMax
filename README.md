@@ -3,8 +3,8 @@
 > For a homeowner, small builder or permit tech in Orange County: tells you whether an ADU can likely be approved
 > **by-right** (no hearing), proves it with the statute text, and shows exactly what is still unknown.
 
-**Team:** HouseMax <!-- TODO: confirm team name -->
-**Members:** Winston Ta (backend), Rishabh Vira (frontend) <!-- TODO: add everyone -->
+**Team:** HouseMax
+**Members:** Winston Ta (backend), Rishabh Vira (frontend), Alina Zheng (frontend-Anthropic presentation), Chandu Siram (ideation, APIs, legal auditing) 
 **Lane:** 2 Clear it
 **Built at:** Claude Impact Lab: UCI × SoCal Affordable Housing, November 7, 2026
 
@@ -35,7 +35,9 @@ A Next.js 16 app (`frontend/`) with a backend in the same app (`frontend/app/api
 | Two-Clock Ledger | ADU statutory clocks (15 business days to completeness, 60 days to decide, § 66317(a)(2)–(3)) next to real permit-to-occupancy medians from HCD APR data. |
 | Draft packet PDF | 4-page draft rendered on the server (`@react-pdf/renderer`): cover, spec matrix, applicant's statement citing only the rules relied on, pre-flight checklist. Watermarked DRAFT on every page. |
 
-**Demo video:** <!-- TODO: link, or "uploaded on the hub" -->
+**Demo video:**
+
+<video src="./byright-demo.mp4" controls width="100%"></video>
 
 ### Demo walkthrough
 
