@@ -25,7 +25,7 @@ function Paper({ n, title, children }: { n: number; title: string; children: Rea
         <p className="text-[10px] font-bold uppercase tracking-[0.16em]">
           [Page {n}] {title}
         </p>
-        <p className="text-[9px] text-muted">Permit Fastrak · {prettyDate(AS_OF_DATE)}</p>
+        <p className="text-[9px] text-muted">Byright · {prettyDate(AS_OF_DATE)}</p>
       </div>
       {children}
     </motion.section>

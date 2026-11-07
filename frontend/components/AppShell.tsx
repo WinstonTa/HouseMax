@@ -83,7 +83,7 @@ function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
           <Zap className="size-5" aria-hidden />
         </motion.div>
         <div>
-          <p className="text-[15px] font-semibold leading-tight">Permit Fastrak</p>
+          <p className="text-[15px] font-semibold leading-tight">Byright</p>
           <p className="text-[11px] text-white/50">By-Right Pathway Engine</p>
         </div>
       </Link>

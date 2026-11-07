@@ -3,7 +3,7 @@ import { AppShell } from "@/components/AppShell";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Permit Fastrak — By-Right Pathway Engine",
+  title: "Byright — By-Right Pathway Engine",
   description: "AI-assisted housing permitting: determine, prove and preserve by-right approval for California housing projects.",
 };
 
