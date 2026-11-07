@@ -30,10 +30,17 @@ describe("demo states through the service", () => {
     expect(r.meta.sources.map((s) => s.id)).toContain("STATUTE_ADU_HEIGHT_TRANSIT");
   });
 
-  it("transit false at 17.5 ft -> DISCRETIONARY_LIKELY with a height flip", () => {
+  it("transit false at 17.5 ft -> CANT_TELL_YET (above the 16 ft floor, local limit unknown) with a height flip", () => {
     const r = runEvaluation({ ...adu, transit: false });
+    expect(r.evaluation.verdict).toBe("CANT_TELL_YET");
+    const flip = r.flips.find((f) => f.id === "height");
+    expect(flip?.patch.height).toBe(16);
+  });
+
+  it("a verified failure (1,500 sq ft detached) -> DISCRETIONARY_LIKELY", () => {
+    const r = runEvaluation({ ...adu, transit: true, sqft: 1500 });
     expect(r.evaluation.verdict).toBe("DISCRETIONARY_LIKELY");
-    expect(r.flips.some((f) => f.id === "height")).toBe(true);
+    expect(r.flips.some((f) => f.id === "size")).toBe(true);
   });
 
   it("server result equals the client engine (one engine, two runtimes)", () => {

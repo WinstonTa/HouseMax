@@ -132,6 +132,10 @@ export interface Condition {
   /** Which missing field resolves an UNKNOWN. */
   unknownField?: FollowUpField;
   overrideId?: string;
+  /** Regulation (data/regulations.json) this condition rests on. Absent = no rule on file. */
+  ruleId?: string;
+  /** Filled by evaluate(): VERIFIED only when ruleId points at a VERIFIED regulation. */
+  ruleStatus?: RuleStatus;
 }
 
 export type ReviewKey = "PLANNING_COMMISSION" | "SITE_PLAN_REVIEW" | "EIR" | "COASTAL";
@@ -150,6 +154,10 @@ export interface Evaluation {
   conditions: Condition[];
   failed: Condition[];
   unknown: Condition[];
+  /** Blocking conditions whose rule is not VERIFIED. Any of these keeps the verdict at CANT_TELL_YET. */
+  unverified: Condition[];
+  /** One sentence on why the verdict is what it is. Says "likely", never "approved". */
+  reason: string;
   appliedOverrides: string[];
   followUps: FollowUpQuestion[];
   triggeredReviews: ReviewKey[];

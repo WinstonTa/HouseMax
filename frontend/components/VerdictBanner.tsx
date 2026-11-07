@@ -85,7 +85,9 @@ export function VerdictHero({ evaluation }: { evaluation: Evaluation }) {
       ? "Likely eligible for ministerial review under the rules checked here: no hearing, no CEQA."
       : verdict === "DISCRETIONARY_LIKELY"
         ? `${fail} condition${fail === 1 ? "" : "s"} push this into discretionary review.`
-        : `${evaluation.followUps.length} answer${evaluation.followUps.length === 1 ? "" : "s"} away from a verdict.`;
+        : evaluation.followUps.length > 0
+          ? `${evaluation.followUps.length} answer${evaluation.followUps.length === 1 ? "" : "s"} away from a verdict.`
+          : evaluation.reason;
 
   return (
     <motion.div

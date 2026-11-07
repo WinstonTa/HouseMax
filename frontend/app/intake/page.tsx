@@ -129,7 +129,7 @@ export default function IntakePage() {
           <Card>
             <CardHeader title="Parcel conditions" icon={TrainFront} subtitle="These facts unlock or block state-law overrides." />
             <div className="space-y-1 p-3">
-              <Row label="Within ½ mile of major transit" hint="Unlocks 18 ft ADU height & zero parking (AB 2097)" highlight={unknownFields.has("transit")}>
+              <Row label="Within ½ mile of major transit" hint="ADU: 18 ft guaranteed height (§ 66321(b)(4)(B)) and no parking standards (§ 66322(a)(1)). Multifamily: AB 2097." highlight={unknownFields.has("transit")}>
                 <Segmented<Tri> id="transit" size="sm" value={toTri(p.transit)} onChange={(t) => update({ transit: fromTri(t) })} options={TRI_OPTS} />
               </Row>
               <Row label="In California Coastal Zone" hint="May require a Coastal Development Permit" highlight={unknownFields.has("coastal")}>
