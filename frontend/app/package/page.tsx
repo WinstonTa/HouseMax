@@ -248,7 +248,7 @@ export default function PackagePage() {
                         {r.modern_citation} — {r.title}
                       </p>
                       <p className="text-[9px] text-muted">
-                        Effective {r.effective_date} · Last checked {r.last_checked_date}
+                        Effective {r.effective_date ?? "not recorded"} · {r.status === "VERIFIED" ? `Verified ${r.last_checked_date}` : "UNVERIFIED"}
                       </p>
                     </div>
                   ) : null;

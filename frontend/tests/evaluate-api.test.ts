@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { POST } from "@/app/api/evaluate/route";
-import { DEMO_PROJECTS } from "@/lib/data";
+import { DEMO_PROJECTS, REGULATIONS } from "@/lib/data";
 import { EvaluateRequest, type EvaluateResponse } from "@/lib/backend/schemas";
 import { runEvaluation } from "@/lib/backend/evaluate-service";
 import { evaluate } from "@/lib/by-right-engine";
@@ -41,9 +41,14 @@ describe("demo states through the service", () => {
     expect(runEvaluation(p).evaluation).toEqual(evaluate(p));
   });
 
-  it("sources are never claimed VERIFIED before P1 verification", () => {
+  it("sources carry each regulation's own status, URL and check date", () => {
     const r = runEvaluation({ ...adu, transit: true });
-    expect(r.meta.sources.every((s) => s.status === "UNVERIFIED")).toBe(true);
+    for (const s of r.meta.sources) {
+      const reg = REGULATIONS.find((x) => x.id === s.id)!;
+      expect(s.status).toBe(reg.status);
+      expect(s.url).toBe(reg.source_url);
+      expect(s.checked_date).toBe(reg.last_checked_date);
+    }
   });
 });
 

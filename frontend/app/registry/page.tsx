@@ -10,7 +10,14 @@ import { Badge, Card, CardHeader, Page, PageTitle, Segmented, fadeUp, stagger } 
 
 type Tab = "statutes" | "checklists";
 
-function Freshness({ iso }: { iso: string }) {
+function Freshness({ iso }: { iso: string | null }) {
+  if (!iso) {
+    return (
+      <Badge tone="serious" icon={BadgeCheck}>
+        Not verified
+      </Badge>
+    );
+  }
   const age = daysBetween(iso, AS_OF_DATE);
   const tone = age <= 60 ? "good" : age <= 120 ? "warning" : "serious";
   return (
@@ -136,8 +143,12 @@ export default function RegistryPage() {
                           <p className="mt-0.5 text-xs leading-relaxed text-ink-2">{r.audit_text}</p>
                         </td>
                         <td className="px-3 py-3">
-                          <p className="font-mono text-xs text-ink">{r.modern_citation}</p>
+                          <a href={r.source_url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 font-mono text-xs text-ink underline decoration-hairline underline-offset-2 hover:decoration-ink">
+                            {r.modern_citation}
+                            <ExternalLink className="size-3" aria-hidden />
+                          </a>
                           {r.legacy_citation !== "None" && <p className="font-mono text-[11px] text-muted line-through">{r.legacy_citation}</p>}
+                          <p className="mt-1 text-[11px] text-muted">{r.verified_by ?? "No one has verified this rule yet."}</p>
                         </td>
                         <td className="px-3 py-3">
                           <div className="flex flex-wrap gap-1">
@@ -146,7 +157,7 @@ export default function RegistryPage() {
                             ))}
                           </div>
                         </td>
-                        <td className="tabular px-3 py-3 text-ink-2">{r.effective_date}</td>
+                        <td className="tabular px-3 py-3 text-ink-2">{r.effective_date ?? "Not recorded"}</td>
                         <td className="px-3 py-3">
                           <Freshness iso={r.last_checked_date} />
                         </td>

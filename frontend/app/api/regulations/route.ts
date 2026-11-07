@@ -5,6 +5,6 @@ import { REGULATIONS } from "@/lib/data";
 export function GET() {
   return NextResponse.json({
     regulations: REGULATIONS,
-    note: "Citations not yet re-verified against leginfo by the backend team; treat as UNVERIFIED.",
+    note: "Each rule carries its own status. VERIFIED = read on leginfo by the team (not a licensed professional). UNVERIFIED rules cannot produce a By-Right verdict.",
   });
 }

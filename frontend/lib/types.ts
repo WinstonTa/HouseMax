@@ -56,16 +56,25 @@ export interface City {
   checklists: Partial<Record<"adu" | "missing_middle", Checklist>>;
 }
 
+/** VERIFIED = a person read the source text. UNVERIFIED rules cannot produce a By-Right verdict. */
+export type RuleStatus = "VERIFIED" | "UNVERIFIED";
+
 export interface Regulation {
   id: string;
   code: string;
   modern_citation: string;
   legacy_citation: string;
-  effective_date: string;
-  last_checked_date: string;
+  /** null = not recorded. */
+  effective_date: string | null;
+  /** Date a person last read the source. null = never verified. */
+  last_checked_date: string | null;
   title: string;
   applies_to: ProjectType[];
   audit_text: string;
+  status: RuleStatus;
+  source_url: string;
+  verified_by: string | null;
+  verification_note: string;
 }
 
 export interface PreapprovedPlan {

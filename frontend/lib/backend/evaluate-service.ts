@@ -10,17 +10,14 @@ import { REGULATIONS } from "@/lib/data";
 import type { ProjectInput } from "@/lib/types";
 import { DISCLAIMER, ENGINE_VERSION, type EvaluateResponse, type SourceRef } from "./schemas";
 
-/**
- * Regulations in data/regulations.json have not yet been re-checked against leginfo by this
- * team, so every source is reported UNVERIFIED until P1 verification lands (plan §2 #5).
- */
+/** Source refs straight from data/regulations.json, carrying each rule's verification status. */
 function sourcesFor(regulationIds: string[]): SourceRef[] {
   return REGULATIONS.filter((r) => regulationIds.includes(r.id)).map((r) => ({
     id: r.id,
     label: `${r.modern_citation}: ${r.title}`,
-    url: null,
-    status: "UNVERIFIED",
-    checked_date: null,
+    url: r.source_url,
+    status: r.status,
+    checked_date: r.last_checked_date,
   }));
 }
 
