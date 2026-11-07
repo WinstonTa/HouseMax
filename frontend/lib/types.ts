@@ -1,4 +1,4 @@
-// Shared domain types for Permit Fastrak (mirrors /data/*.json schemas from Implementation.md §7)
+// Shared domain types for Byright (mirrors /data/*.json schemas from Implementation.md §7)
 
 export type ProjectType = "ADU_DETACHED" | "MISSING_MIDDLE";
 export type ConflictType = "NONE" | "STALE_CITATION" | "SUBSTANTIVE_CONFLICT";
